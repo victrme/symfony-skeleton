@@ -24,7 +24,7 @@ services:
             - php
 
     mariadb:
-        image: mariadb:12
+        image: mariadb:latest
         volumes:
             - mariadb:/var/lib/mysql
         ports:
@@ -55,8 +55,3 @@ services:
         volumes:
             - ./:/var/www/html
         working_dir: /var/www/html
-
-volumes:
-    mariadb:
-    caddy_data:
-    caddy_config:

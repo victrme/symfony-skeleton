@@ -1,8 +1,11 @@
 init:
 	echo "hello world"
 
-b:
-	docker exec -it symfony-docker-php-1 bash
+up:
+	@docker compose up -d
 
-logs-b:
-	docker compose logs -f
+php:
+	@docker compose exec -it php bash
+
+node:
+	@docker compose exec -it node bash
