@@ -1,30 +1,40 @@
+#
+# PHP
+#
+
 FROM php:8.4.19-fpm AS php
 
-# Add the github script to easy install-php-extensions
-ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
-RUN install-php-extensions pdo_mysql zip ctype iconv xsl gd intl
+ARG user=www-html
+ARG uid=1000
 
-# Ajouter composer depuis l'image composer officiel
-COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN --mount=type=cache,target=/var/cache/apt \
+    apt-get update && apt-get install -y --no-install-recommends \
+    git unzip libzip-dev libicu-dev && \
+    docker-php-ext-install intl pdo_mysql zip opcache && \
+    rm -rf /var/lib/apt/lists/*
 
-# Ajouter le client symfony
-COPY --link \
-    --from=ghcr.io/symfony-cli/symfony-cli:latest \
-    /usr/local/bin/symfony /usr/local/bin/symfony
+RUN echo "memory_limit=1G" > /usr/local/etc/php/conf.d/memory-limit.ini
 
-# Install git
-RUN apt-get update \
-    && apt-get install -y git \
-    && rm -rf /var/lib/apt/lists/*
+COPY --link --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --link --from=ghcr.io/symfony-cli/symfony-cli:latest /usr/local/bin/symfony /usr/local/bin/symfony
 
-# Pour linux on se créer un user afin de synchroniser
-# les ids et groups ids pour eviter les probleme de droit
-RUN groupadd -g 501 devGroup
-RUN useradd -u 501 -g 501 -m devUser
-USER devUser
+RUN groupadd -g $uid $user && \
+    useradd -u $uid -g $user -m -G www-data,root -d /home/$user $user && \
+    mkdir -p /home/$user/.composer && \
+    chown -R $user:$user /home/$user
+
+WORKDIR /var/www/html
+COPY --chown=$user:$user . .
+USER $user
+
+#
+# Node
+#
 
 FROM node:24.14.0 AS node
 
+RUN npm install -g pnpm
 RUN groupadd -g 501 devGroup
 RUN useradd -u 501 -g 501 -m devUser
+
 USER devUser
