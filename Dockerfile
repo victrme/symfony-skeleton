@@ -34,7 +34,7 @@ USER $user
 FROM node:24.14.0 AS node
 
 RUN npm install -g pnpm
-RUN groupadd -g 501 devGroup
-RUN useradd -u 501 -g 501 -m devUser
+RUN groupadd -g 501 node
+RUN useradd -u 501 -g 501 -m node
 
-USER devUser
+USER node
