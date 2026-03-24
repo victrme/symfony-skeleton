@@ -1,4 +1,14 @@
 services:
+    db:
+        image: mariadb:12.3.1-rc
+        environment:
+            MARIADB_DATABASE: db_symfony
+            MARIADB_ROOT_PASSWORD: root
+        volumes:
+            - db:/var/lib/mysql
+        ports:
+            - 3306:3306
+
     php:
         build:
             dockerfile: Dockerfile
@@ -6,46 +16,22 @@ services:
         volumes:
             - ./:/var/www/html
         working_dir: /var/www/html
+        depends_on:
+            - db
 
     caddy:
-        build:
-            dockerfile: Dockerfile
-            target: caddy
+        image: caddy:2.11
         restart: unless-stopped
         cap_add:
             - NET_ADMIN
         ports:
-            - 8443:8443
+            - "8443:443"
+            - "8443:443/udp"
         volumes:
-            - ./:/var/www/html
-            - caddy_data:/data
-            - caddy_config:/config
+            - ./Caddyfile:/etc/caddy/Caddyfile
+            - .:/var/www/html
         depends_on:
             - php
-
-    mariadb:
-        image: mariadb:latest
-        volumes:
-            - mariadb:/var/lib/mysql
-        ports:
-            - 3306:3306
-        environment:
-            MARIADB_DATABASE: db_symfony
-            MARIADB_ROOT_PASSWORD: root
-        depends_on:
-            - php
-
-    phpmyadmin:
-        image: phpmyadmin
-        restart: always
-        ports:
-            - 8080:80
-        environment:
-            - PMA_HOST=mariadb
-            - PMA_PORT=3306
-            - PMA_ARBITRARY=1
-        depends_on:
-            - mariadb
 
     node:
         build:
@@ -55,3 +41,35 @@ services:
         volumes:
             - ./:/var/www/html
         working_dir: /var/www/html
+        depends_on:
+            - php
+
+    #
+    # Tools
+    #
+
+    phpmyadmin:
+        image: phpmyadmin
+        restart: always
+        ports:
+            - 8080:80
+        environment:
+            - PMA_HOST=db
+            - PMA_PORT=3306
+            - PMA_ARBITRARY=1
+        depends_on:
+            - db
+
+    mailpit:
+        image: axllent/mailpit
+        restart: unless-stopped
+        ports:
+            - "8025:8025"
+            - "1025:1025"
+        depends_on:
+            - php
+
+volumes:
+    db:
+    caddy_data:
+    caddy_config:

@@ -1,6 +1,15 @@
-https://localhost:8443 {
-    tls internal
+localhost {
     root * /var/www/html/public
-    file_server
     php_fastcgi php:9000
+    file_server
+    encode zstd gzip
+
+    log {
+        output file /var/log/caddy/example.access.log
+        format console
+    }
+
+    request_body {
+        max_size 20MB
+    }
 }

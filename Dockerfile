@@ -1,4 +1,4 @@
-FROM php:8.3-fpm AS php
+FROM php:8.4.19-fpm AS php
 
 # Add the github script to easy install-php-extensions
 ADD --chmod=0755 https://github.com/mlocati/docker-php-extension-installer/releases/latest/download/install-php-extensions /usr/local/bin/
@@ -23,12 +23,8 @@ RUN groupadd -g 501 devGroup
 RUN useradd -u 501 -g 501 -m devUser
 USER devUser
 
-FROM node:latest AS node
+FROM node:24.14.0 AS node
 
 RUN groupadd -g 501 devGroup
 RUN useradd -u 501 -g 501 -m devUser
 USER devUser
-
-FROM caddy:latest AS caddy
-
-COPY Caddyfile /etc/caddy/Caddyfile
