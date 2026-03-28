@@ -40,5 +40,3 @@ USER root
 RUN npm install --global pnpm
 
 USER node
-
-ENTRYPOINT ["tail", "-f", "/dev/null"]

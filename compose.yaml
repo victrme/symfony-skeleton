@@ -10,6 +10,8 @@ services:
         build:
             dockerfile: Dockerfile
             target: node
+        working_dir: /var/www/html
+        tty: true
         ports:
             - "5173:5173"
         volumes:

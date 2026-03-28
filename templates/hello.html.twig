@@ -1,0 +1,26 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}{{ 'hello.title' | trans }}{% endblock %}
+
+{% block body %}
+    <h1>{{ 'hello.title' | trans }}</h1>
+
+    <p>{{ 'hello.subtitle' | trans }}</p>
+
+    <ul>
+        <li>
+            <p>
+                <span>{{ "hello.scripts.label" | trans }}</span>
+                <button data-hello-btn="">Clicked 0 times</button>
+            </p>
+        </li>
+        <li>
+            <p>
+                <span>{{ "hello.styles.label" | trans }}</span>
+                <span class="highlighted">{{ "hello.styles.sentence" | trans }}</span>
+            </p>
+        </li>
+    </ul>
+
+    <a href="/">Back to symfony home</a>
+{% endblock %}
