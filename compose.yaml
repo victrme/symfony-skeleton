@@ -1,26 +1,36 @@
 services:
-    db:
-        image: mariadb:12.3.1-rc
-        environment:
-            MARIADB_DATABASE: db_symfony
-            MARIADB_ROOT_PASSWORD: root
-        volumes:
-            - db:/var/lib/mysql
-        ports:
-            - 3306:3306
-
     php:
         build:
             dockerfile: Dockerfile
             target: php
         volumes:
             - ./:/var/www/html
-        working_dir: /var/www/html
-        depends_on:
-            - db
+
+    node:
+        build:
+            dockerfile: Dockerfile
+            target: node
+        ports:
+            - "5173:5173"
+        volumes:
+            - ./:/var/www/html
+
+    #
+    # Development
+    #
+
+    db:
+        image: mariadb
+        environment:
+            MARIADB_DATABASE: db_symfony
+            MARIADB_ROOT_PASSWORD: root
+        volumes:
+            - db:/var/lib/mysql
+        ports:
+            - "3306:3306"
 
     caddy:
-        image: caddy:2.11
+        image: caddy
         restart: unless-stopped
         cap_add:
             - NET_ADMIN
@@ -33,26 +43,11 @@ services:
         depends_on:
             - php
 
-    node:
-        build:
-            dockerfile: Dockerfile
-            target: node
-        tty: true
-        volumes:
-            - ./:/var/www/html
-        working_dir: /var/www/html
-        depends_on:
-            - php
-
-    #
-    # Tools
-    #
-
     phpmyadmin:
         image: phpmyadmin
         restart: always
         ports:
-            - 8080:80
+            - "8080:80"
         environment:
             - PMA_HOST=db
             - PMA_PORT=3306
@@ -65,9 +60,6 @@ services:
         restart: unless-stopped
         ports:
             - "8025:8025"
-            - "1025:1025"
-        depends_on:
-            - php
 
 volumes:
     db:

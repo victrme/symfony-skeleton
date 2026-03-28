@@ -33,8 +33,12 @@ USER $user
 
 FROM node:24.14.0 AS node
 
-RUN npm install -g pnpm
-RUN groupadd -g 501 node
-RUN useradd -u 501 -g 501 -m node
+WORKDIR /var/www/html
+
+USER root
+
+RUN npm install --global pnpm
 
 USER node
+
+ENTRYPOINT ["tail", "-f", "/dev/null"]
