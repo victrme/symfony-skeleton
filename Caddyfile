@@ -1,8 +1,13 @@
 localhost {
+
     root * /var/www/html/public
     php_fastcgi php:9000
     file_server
     encode zstd gzip
+
+    handle /build/* {
+        reverse_proxy node:5173
+    }
 
     log {
         output file /var/log/caddy/example.access.log
