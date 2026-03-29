@@ -27,7 +27,3 @@ node_modules
 /node_modules/
 /public/build/
 ###< pentatrion/vite-bundle ###
-
-###> friendsofphp/php-cs-fixer ###
-/.php-cs-fixer.cache
-###< friendsofphp/php-cs-fixer ###

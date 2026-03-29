@@ -14,4 +14,5 @@ return new PhpCsFixer\Config()
         '@Symfony' => true,
     ])
     ->setFinder($finder)
+    ->setCacheFile(__DIR__.'/var/.php-cs-fixer.cache')
 ;
