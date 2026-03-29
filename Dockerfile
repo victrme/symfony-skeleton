@@ -31,7 +31,7 @@ USER $user
 # Node
 #
 
-FROM node:24.14.0 AS node
+FROM node:25.8.2 AS node
 
 WORKDIR /var/www/html
 

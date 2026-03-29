@@ -1,36 +1,43 @@
+{% trans_default_domain 'hello' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'hello.title' | trans }}{% endblock %}
+{% block title %}{{ 'title' | trans }}{% endblock %}
 
 {% block body %}
-    <h1>{{ 'hello.title' | trans }}</h1>
+    <h1>{{ 'title' | trans }}</h1>
 
-    <p>{{ 'hello.subtitle' | trans }}</p>
+    <p>{{ 'subtitle' | trans }}</p>
 
     <ul>
         <li>
             <p>
-                <span>{{ "hello.scripts.label" | trans }}</span>
+                <span>{{ "scripts.label" | trans }}</span>
                 <button data-hello-btn="">Clicked 0 times</button>
             </p>
         </li>
         <li>
             <p>
-                <span>{{ "hello.styles.label" | trans }}</span>
-                <span class="highlighted">{{ "hello.styles.sentence" | trans }}</span>
+                <span>{{ "styles.label" | trans }}</span>
+                <span class="highlighted">{{ "styles.sentence" | trans }}</span>
             </p>
         </li>
         <li>
             <p>
-                <span>{{ "hello.auth.label" | trans }}</span>
+                <span>{{ "trans.label" | trans }}</span>
+                <span>{{ "trans.sentence" | trans }}</span>
+            </p>
+        </li>
+        <li>
+            <p>
+                <span>{{ "auth.label" | trans }}</span>
 
                 {% if app.user %}
-                    <span>{{ 'hello.auth.authed' | trans }} {{ app.user.email }}, </span>
-                    <a href="/logout">{{ "hello.auth.logout" | trans }}</a>
+                    <span>{{ 'auth.authed' | trans }} {{ app.user.email }}, </span>
+                    <a href="/logout">{{ "auth.logout" | trans }}</a>
                 {% else %}
-                    <a href="/login">{{ "hello.auth.login" | trans }}</a>
+                    <a href="/login">{{ "auth.login" | trans }}</a>
                     or
-                    <a href="/register">{{ "hello.auth.signup" | trans }}</a>
+                    <a href="/register">{{ "auth.signup" | trans }}</a>
                 {% endif %}
             </p>
         </li>
