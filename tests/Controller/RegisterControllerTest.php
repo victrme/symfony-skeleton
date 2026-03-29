@@ -1,13 +1,13 @@
 <?php
 
-namespace App\Tests;
+namespace App\Tests\Controller;
 
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManager;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-class RegistrationControllerTest extends WebTestCase
+class RegisterControllerTest extends WebTestCase
 {
     private KernelBrowser $client;
     private UserRepository $userRepository;

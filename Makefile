@@ -15,3 +15,15 @@ node:
 
 logs:
 	@docker compose logs -f
+
+dev:
+	@docker compose exec node pnpm run dev
+
+pnpm:
+	@docker compose exec node pnpm $(filter-out $@,$(MAKECMDGOALS))
+
+composer:
+	@docker compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
+
+%:
+	@:
