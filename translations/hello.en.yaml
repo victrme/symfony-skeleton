@@ -1,17 +1,16 @@
 title: "Hello world !"
 subtitle: "This Symfony skeleton project is working as intended."
 scripts:
-    label: "Scripts: "
+    label: "Scripts"
 styles:
-    label: "Styles: "
+    label: "Styles"
     sentence: "This has a yellow background"
 trans:
-    label: "Translations: "
+    label: "Translations"
     sentence: "You should be able to read this"
 auth:
-    label: "Authentification: "
+    label: "Authentification"
     authed: "logged in as"
     login: "log in"
     logout: "log out"
     signup: "register"
-

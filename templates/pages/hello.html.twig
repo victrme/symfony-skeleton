@@ -4,44 +4,53 @@
 {% block title %}{{ 'title' | trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-4xl font-bold text-center p-8">{{ 'title' | trans }}</h1>
+    <h1 class="text-4xl font-bold text-center p-8 mt-8">
+        <span>{{ 'title' | trans }}</span>
+    </h1>
 
     <p>{{ 'subtitle' | trans }}</p>
 
     <ul class="list">
-        <li class="list-row">
-            <p>
-                <span>{{ "scripts.label" | trans }}</span>
+        <li class="list-row items-center">
+            <p>{{ "scripts.label" | trans }}</p>
+            <p class="list-col-grow text-end">
                 <button class="btn" data-hello-btn="">Clicked 0 times</button>
             </p>
         </li>
         <li class="list-row">
             <p>
                 <span>{{ "styles.label" | trans }}</span>
-                <span class="highlighted">{{ "styles.sentence" | trans }}</span>
+            </p>
+            <p class="list-col-grow text-end">
+                {{ "styles.sentence" | trans }}
             </p>
         </li>
         <li class="list-row">
             <p>
-                <span>{{ "trans.label" | trans }}</span>
-                <span>{{ "trans.sentence" | trans }}</span>
+                {{ "trans.label" | trans }}
+            </p>
+            <p class="list-col-grow text-end">
+                {{ "trans.sentence" | trans }}
             </p>
         </li>
         <li class="list-row">
             <p>
                 <span>{{ "auth.label" | trans }}</span>
-
+            </p>
+            <p class="list-col-grow text-end">
                 {% if app.user %}
                     <span>{{ 'auth.authed' | trans }} {{ app.user.email }}, </span>
-                    <a href="/logout">{{ "auth.logout" | trans }}</a>
+                    <a class="link link-primary" href="/logout">{{ "auth.logout" | trans }}</a>
                 {% else %}
-                    <a href="/login">{{ "auth.login" | trans }}</a>
+                    <a class="link link-primary" href="/login">{{ "auth.login" | trans }}</a>
                     or
-                    <a href="/register">{{ "auth.signup" | trans }}</a>
+                    <a class="link link-primary" href="/register">{{ "auth.signup" | trans }}</a>
                 {% endif %}
             </p>
         </li>
     </ul>
 
-    <a href="/">Back to symfony home</a>
+    <p class="text-center mt-16">
+        <a class="btn btn-primary" href="/">Back to symfony home</a>
+    </p>
 {% endblock %}
