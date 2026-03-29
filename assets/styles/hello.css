@@ -1,8 +1,2 @@
-.highlighted {
-    background-color: yellow;
-}
-
-:root,
-:host {
-    --pico-font-size: 90%;
-}
+@import "tailwindcss";
+@plugin "daisyui";

@@ -1,11 +1,10 @@
 import { defineConfig } from "vite";
 import symfonyPlugin from "vite-plugin-symfony";
+import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-    server: {
-        host: '0.0.0.0',
-    },
     plugins: [
+        tailwindcss(),
         symfonyPlugin({
             viteDevServerHostname: 'localhost'
         }),
@@ -16,5 +15,8 @@ export default defineConfig({
                 'app': './assets/index.ts',
             },
         }
+    },
+    server: {
+        host: '0.0.0.0',
     },
 });

@@ -4,30 +4,30 @@
 {% block title %}{{ 'title' | trans }}{% endblock %}
 
 {% block body %}
-    <h1>{{ 'title' | trans }}</h1>
+    <h1 class="text-4xl font-bold text-center p-8">{{ 'title' | trans }}</h1>
 
     <p>{{ 'subtitle' | trans }}</p>
 
-    <ul>
-        <li>
+    <ul class="list">
+        <li class="list-row">
             <p>
                 <span>{{ "scripts.label" | trans }}</span>
-                <button data-hello-btn="">Clicked 0 times</button>
+                <button class="btn" data-hello-btn="">Clicked 0 times</button>
             </p>
         </li>
-        <li>
+        <li class="list-row">
             <p>
                 <span>{{ "styles.label" | trans }}</span>
                 <span class="highlighted">{{ "styles.sentence" | trans }}</span>
             </p>
         </li>
-        <li>
+        <li class="list-row">
             <p>
                 <span>{{ "trans.label" | trans }}</span>
                 <span>{{ "trans.sentence" | trans }}</span>
             </p>
         </li>
-        <li>
+        <li class="list-row">
             <p>
                 <span>{{ "auth.label" | trans }}</span>
 
