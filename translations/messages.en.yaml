@@ -6,3 +6,9 @@ hello:
     styles:
         label: "Styles: "
         sentence: "This has a yellow background"
+    auth:
+        label: "Authentification: "
+        authed: "logged in as"
+        login: "log in"
+        logout: "log out"
+        signup: "register"

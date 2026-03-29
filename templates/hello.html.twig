@@ -20,6 +20,20 @@
                 <span class="highlighted">{{ "hello.styles.sentence" | trans }}</span>
             </p>
         </li>
+        <li>
+            <p>
+                <span>{{ "hello.auth.label" | trans }}</span>
+
+                {% if app.user %}
+                    <span>{{ 'hello.auth.authed' | trans }} {{ app.user.email }}, </span>
+                    <a href="/logout">{{ "hello.auth.logout" | trans }}</a>
+                {% else %}
+                    <a href="/login">{{ "hello.auth.login" | trans }}</a>
+                    or
+                    <a href="/register">{{ "hello.auth.signup" | trans }}</a>
+                {% endif %}
+            </p>
+        </li>
     </ul>
 
     <a href="/">Back to symfony home</a>
