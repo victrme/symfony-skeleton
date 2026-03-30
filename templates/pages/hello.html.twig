@@ -10,33 +10,53 @@
 
     <p>{{ 'subtitle' | trans }}</p>
 
+    <h2 class="mt-5 text-xl">Frontend</h2>
+
     <ul class="list">
         <li class="list-row items-center">
-            <p>{{ "scripts.label" | trans }}</p>
+            <label class="label">
+                <input type="checkbox" class="checkbox" />
+                <span>{{ "scripts.label" | trans }}</span>
+            </label>
             <p class="list-col-grow text-end">
-                <button class="btn" data-hello-btn="">Clicked 0 times</button>
+                <button class="btn btn-sm btn-accent" data-hello-btn="">
+                    Clicked 0 times
+                </button>
             </p>
         </li>
         <li class="list-row">
             <p>
-                <span>{{ "styles.label" | trans }}</span>
+                <label class="label">
+                    <input type="checkbox" class="checkbox" />
+                    <span>{{ "styles.label" | trans }}</span>
+                </label>
             </p>
             <p class="list-col-grow text-end">
                 {{ "styles.sentence" | trans }}
             </p>
         </li>
         <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox" />
+                <span>{{ "trans.label" | trans }}</span>
+            </label>
             <p>
-                {{ "trans.label" | trans }}
             </p>
             <p class="list-col-grow text-end">
                 {{ "trans.sentence" | trans }}
             </p>
         </li>
+    </ul>
+
+    <h2 class="mt-5 text-xl">Backend</h2>
+
+
+    <ul class="list">
         <li class="list-row">
-            <p>
+            <label class="label">
+                <input type="checkbox" class="checkbox" />
                 <span>{{ "auth.label" | trans }}</span>
-            </p>
+            </label>
             <p class="list-col-grow text-end">
                 {% if app.user %}
                     <span>{{ 'auth.authed' | trans }} {{ app.user.email }}, </span>
