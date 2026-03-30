@@ -69,3 +69,11 @@ docker compose exec php php bin/console doctrine:schema:create --env=test
 Main database connection is configured via `DATABASE_URL` in `.env`.
 
 Symfony test runs with `APP_ENV=test` (see `phpunit.xml`).
+
+## Thoughts to re-organise
+
+- Comments are used as separators, 3 lines of "#" or a single PHPDoc/JSDoc
+- Development docker compose services are using the latest images
+- Production services (PHP, Node) are tied to a specific version
+- Templates are organized like Astro projects, with `pages/`, `components/`, and `layouts/`
+- PHP only handles PHP, all the frontend is delegated to Node, including formatting & linting

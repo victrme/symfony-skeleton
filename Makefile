@@ -1,3 +1,7 @@
+#
+# Docker
+#
+
 init:
 	@docker compose up -d --build --remove-orphans
 
@@ -7,14 +11,22 @@ up:
 down:
 	@docker compose down -t 0
 
+logs:
+	@docker compose logs -f
+
+#
+# Services
+#
+
 php:
 	@docker compose exec -it php bash
 
 node:
 	@docker compose exec -it node bash
 
-logs:
-	@docker compose logs -f
+#
+# Tools & scripts
+#
 
 dev:
 	@docker compose exec node pnpm run dev
