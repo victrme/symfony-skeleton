@@ -37,5 +37,8 @@ pnpm:
 composer:
 	@docker compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
 
+symfony:
+	@docker compose exec php symfony $(filter-out $@,$(MAKECMDGOALS))
+
 %:
 	@:

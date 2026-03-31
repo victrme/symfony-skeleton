@@ -77,6 +77,15 @@
         ],
         "post-update-cmd": [
             "@auto-scripts"
+        ],
+        "pre-test": [
+            "php bin/console --env=test doctrine:database:drop --force",
+            "php bin/console --env=test doctrine:database:create",
+            "php bin/console --env=test doctrine:schema:create"
+        ],
+        "test": [
+            "@pre-test",
+            "vendor/bin/phpunit"
         ]
     },
     "conflict": {

@@ -7,16 +7,16 @@
     <h1>
         {{ 'register.title' | trans }}
     </h1>
-
+    
+    {{ form_start(form) }}
     {{ form_errors(form) }}
 
-    {{ form_start(form) }}
-        {{ form_row(form.email) }}
-        {{ form_row(form.plainPassword, {label: 'Password'}) }}
-        {{ form_row(form.agreeTerms) }}
+    {{ form_row(form.email) }}
+    {{ form_row(form.plainPassword, {label: 'Password'}) }}
+    {{ form_row(form.agreeTerms) }}
 
-        <button type="submit" class="btn">
-            {{ 'register.label.submit' | trans }}
-        </button>
+    <button type="submit" class="btn">
+        <span>{{ 'register.label.submit' | trans }}</span>
+    </button>
     {{ form_end(form) }}
 {% endblock %}
