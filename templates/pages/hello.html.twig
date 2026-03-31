@@ -15,7 +15,7 @@
     <ul class="list">
         <li class="list-row items-center">
             <label class="label">
-                <input type="checkbox" class="checkbox" />
+                <input type="checkbox" class="checkbox"/>
                 <span>{{ "scripts.label" | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
@@ -27,7 +27,7 @@
         <li class="list-row">
             <p>
                 <label class="label">
-                    <input type="checkbox" class="checkbox" />
+                    <input type="checkbox" class="checkbox"/>
                     <span>{{ "styles.label" | trans }}</span>
                 </label>
             </p>
@@ -37,7 +37,7 @@
         </li>
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox" />
+                <input type="checkbox" class="checkbox"/>
                 <span>{{ "trans.label" | trans }}</span>
             </label>
             <p>
@@ -50,11 +50,10 @@
 
     <h2 class="mt-5 text-xl">Backend</h2>
 
-
     <ul class="list">
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox" />
+                <input type="checkbox" class="checkbox"/>
                 <span>{{ "auth.label" | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
@@ -66,6 +65,76 @@
                     or
                     <a class="link link-primary" href="/register">{{ "auth.signup" | trans }}</a>
                 {% endif %}
+            </p>
+        </li>
+    </ul>
+
+    <h2 class="mt-5 text-xl">Development</h2>
+
+    <p class="my-2 italic text-sm opacity-50">
+        If you do not have makefile installed, you can replace "make" by the command inside
+        the file
+    </p>
+
+    <ul class="list">
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox"/>
+                <span>{{ "cli.node" | trans }}</span>
+            </label>
+
+            <p class="list-col-grow text-end">
+                <code class="badge badge-soft badge-accent">
+                    make node
+                </code>
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox"/>
+                <span>{{ "cli.php" | trans }}</span>
+            </label>
+
+            <p class="list-col-grow text-end">
+                <code class="badge badge-soft badge-accent">
+                    make php
+                </code>
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox"/>
+                <span>{{ "cli.pnpm" | trans }}</span>
+            </label>
+
+            <p class="list-col-grow text-end">
+                <code class="badge badge-soft badge-accent">
+                    make pnpm i
+                </code>
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox"/>
+                <span>{{ "cli.vite" | trans }}</span>
+            </label>
+
+            <p class="list-col-grow text-end">
+                <code class="badge badge-soft badge-accent">
+                    make dev
+                </code>
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox"/>
+                <span>{{ "cli.tests" | trans }}</span>
+            </label>
+
+            <p class="list-col-grow text-end">
+                <code class="badge badge-soft badge-accent">
+                    make composer run test
+                </code>
             </p>
         </li>
     </ul>

@@ -1,16 +1,27 @@
 title: "Hello world !"
 subtitle: "This Symfony skeleton project is working as intended."
+
 scripts:
     label: "Scripts"
+
 styles:
     label: "Styles"
     sentence: "This page is not default HTML styling"
+
 trans:
     label: "Translations"
     sentence: "You should be able to read this"
+
 auth:
     label: "Authentification"
     authed: "logged in as"
     login: "log in"
     logout: "log out"
     signup: "register"
+
+cli:
+    node: "Node container"
+    php: "PHP container"
+    pnpm: "PNPM install"
+    vite: "Vite dev server"
+    tests: "Functional tests"
