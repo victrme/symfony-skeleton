@@ -35,12 +35,12 @@ class RegisterControllerTest extends WebTestCase
         // Register a new user
         $this->client->request('GET', '/register');
         self::assertResponseIsSuccessful();
-        self::assertPageTitleContains('Register');
+        self::assertPageTitleContains('Sign up');
 
         $this->client->submitForm('Register', [
-            'registration_form[email]' => 'me@example.com',
-            'registration_form[plainPassword]' => 'password',
-            'registration_form[agreeTerms]' => true,
+            'register_form[email]' => 'me@example.com',
+            'register_form[plainPassword]' => 'password',
+            'register_form[agreeTerms]' => true,
         ]);
 
         // Ensure the response redirects after submitting the form, the user exists, and is not verified
