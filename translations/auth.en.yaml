@@ -1,0 +1,22 @@
+login:
+    page: "Log in"
+    title: "Please sign in"
+    authed: "You are logged in as"
+    logout: "Logout"
+    label:
+        email: "Email"
+        password: "Password"
+        remember: "Remember me"
+        submit: "Sign in"
+
+register:
+    title: "Sign up"
+    label:
+        submit: "Register"
+        email: "Email"
+        password: "Password"
+        terms: "I agree with the terms of service"
+    err:
+        terms_not_agreed: 'You must agree to our terms.'
+        pw_not_blank: "Please enter a password"
+        pw_too_short: 'Your password should be at least {{ limit }} characters'

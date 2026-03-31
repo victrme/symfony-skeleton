@@ -17,29 +17,30 @@ class RegisterFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('email')
+            ->add('email', null, [
+                'label' => 'register.label.email'
+            ])
             ->add('agreeTerms', CheckboxType::class, [
+                'label' => 'register.label.terms',
                 'mapped' => false,
                 'constraints' => [
                     new IsTrue(
-                        message: 'You should agree to our terms.',
+                        message: 'register.err.terms_not_agreed',
                     ),
                 ],
             ])
             ->add('plainPassword', PasswordType::class, [
-                // instead of being set onto the object directly,
-                // this is read and encoded in the controller
+                'label' => 'register.label.password',
                 'mapped' => false,
                 'attr' => ['autocomplete' => 'new-password'],
                 'constraints' => [
                     new NotBlank(
-                        message: 'Please enter a password',
+                        message: 'register.err.pw_not_blank',
                     ),
                     new Length(
                         min: 6,
-                        minMessage: 'Your password should be at least {{ limit }} characters',
-                        // max length allowed by Symfony for security reasons
                         max: 4096,
+                        minMessage: 'register.err.pw_too_short',
                     ),
                 ],
             ])
@@ -50,6 +51,7 @@ class RegisterFormType extends AbstractType
     {
         $resolver->setDefaults([
             'data_class' => User::class,
+            'translation_domain' => 'auth',
         ]);
     }
 }

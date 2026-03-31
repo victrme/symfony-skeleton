@@ -4,7 +4,7 @@ scripts:
     label: "Scripts"
 styles:
     label: "Styles"
-    sentence: "This has a yellow background"
+    sentence: "This page is not default HTML styling"
 trans:
     label: "Translations"
     sentence: "You should be able to read this"
