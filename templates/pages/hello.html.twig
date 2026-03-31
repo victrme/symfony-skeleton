@@ -4,11 +4,13 @@
 {% block title %}{{ 'title' | trans }}{% endblock %}
 
 {% block body %}
-    <h1 class="text-4xl font-bold text-center p-8 mt-8">
-        <span>{{ 'title' | trans }}</span>
-    </h1>
+    <div class="py-8 mt-8 text-center">
+        <h1 class="text-4xl font-bold pb-2">
+            <span>{{ 'title' | trans }}</span>
+        </h1>
 
-    <p>{{ 'subtitle' | trans }}</p>
+        <p>{{ 'subtitle' | trans }}</p>
+    </div>
 
     <h2 class="mt-5 text-xl">Frontend</h2>
 
@@ -67,11 +69,28 @@
                 {% endif %}
             </p>
         </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox"/>
+                <span>{{ "email.label" | trans }}</span>
+            </label>
+            <p class="list-col-grow text-end">
+                <span class="me-1">1. </span>
+                <a class="link link-primary" href="{{ path('app_hello_mail') }}"><span
+                    >{{ "email.send" | trans }}</span
+                    ></a>
+
+                <span class="ms-3 me-1">2. </span>
+                <a class="link link-primary" href="http://localhost:8025" target="_blank">
+                    <span>{{ "email.view" | trans }}</span>
+                </a>
+            </p>
+        </li>
     </ul>
 
     <h2 class="mt-5 text-xl">Development</h2>
 
-    <p class="my-2 italic text-sm opacity-50">
+    <p class="my-2 mx-5 italic text-sm opacity-50">
         If you do not have makefile installed, you can replace "make" by the command inside
         the file
     </p>

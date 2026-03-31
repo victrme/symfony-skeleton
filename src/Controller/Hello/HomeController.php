@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Controller;
+namespace App\Controller\Hello;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 
-final class HelloController extends AbstractController
+#[Route('/hello')]
+final class HomeController extends AbstractController
 {
-    #[Route('/hello', name: 'app_hello')]
-    public function index(): Response
+    #[Route('/', name: 'app_hello')]
+    public function __invoke(): Response
     {
         return $this->render('pages/hello.html.twig');
     }
