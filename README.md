@@ -2,11 +2,6 @@
 
 Symfony 7.4 project running with Docker (PHP, MariaDB, Caddy, Node/Vite, Mailpit).
 
-## Requirements
-
-- Docker + Docker Compose
-- Make (optional, but convenient)
-
 ## Quick Start
 
 1. Build and start containers:
@@ -33,13 +28,26 @@ docker compose exec node pnpm install
 - Mailpit: `http://localhost:8025`
 - phpMyAdmin: `http://localhost:8080`
 
-## Useful Commands
+## Makefile commands
 
-- Start containers: `make up`
-- Stop containers: `make down`
-- Follow logs: `make logs`
-- Open PHP shell: `make php`
-- Open Node shell: `make node`
+### Containers
+
+| Command     | Description                                   |
+|-------------|-----------------------------------------------|
+| `make init` | Build and start all containers (with rebuild) |
+| `make up`   | Start containers                              |
+| `make down` | Stop containers                               |
+| `make logs` | Follow container logs                         |
+| `make php`  | Open a shell in the PHP container             |
+| `make node` | Open a shell in the Node container            |
+
+### Tools
+
+| Command                | Description                                    |
+|------------------------|------------------------------------------------|
+| `make pnpm <args>`     | Run a pnpm command in the Node container       |
+| `make composer <args>` | Run a Composer command in the PHP container    |
+| `make symfony <args>`  | Run a Symfony CLI command in the PHP container |
 
 ## Running Tests
 
@@ -77,3 +85,5 @@ Symfony test runs with `APP_ENV=test` (see `phpunit.xml`).
 - Production services (PHP, Node) are tied to a specific version
 - Templates are organized like Astro projects, with `pages/`, `components/`, and `layouts/`
 - PHP only handles PHP, all the frontend is delegated to Node, including formatting & linting
+- Route names must match path names that matches controller directories: `src/Controller/Hello/MailController.php` =>
+  `/hello/mail` => `app_hello_mail`. Controller directories should be the source of truth, whenever applicable.
