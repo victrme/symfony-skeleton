@@ -1,25 +1,39 @@
 {
-  "$schema": "https://biomejs.dev/schemas/2.0.0/schema.json",
-  "formatter": {
-    "enabled": true,
-    "lineWidth": 120,
-    "indentStyle": "space",
-    "indentWidth": 4
-  },
-  "javascript": {
+    "$schema": "https://biomejs.dev/schemas/2.4.10/schema.json",
     "formatter": {
-      "semicolons": "asNeeded",
-      "quoteStyle": "single",
-      "trailingCommas": "es5"
+        "enabled": true,
+        "useEditorconfig": true
+    },
+    "linter": {
+        "enabled": true,
+        "rules": {
+            "correctness": {
+                "recommended": true,
+                "noUnusedVariables": "error"
+            }
+        }
+    },
+    "javascript": {
+        "formatter": {
+            "semicolons": "asNeeded",
+            "quoteStyle": "single",
+            "trailingCommas": "none"
+        }
+    },
+    "css": {
+        "parser": {
+            "tailwindDirectives": true
+        }
+    },
+    "files": {
+        "includes": [
+            "**",
+            "!var",
+            "!vendor",
+            "!public",
+            "!.pnpm-store",
+            "!node_modules"
+        ],
+        "ignoreUnknown": true
     }
-  },
-  "linter": {
-    "enabled": true,
-    "rules": {
-      "correctness": {
-        "recommended": true,
-        "noUnusedVariables": "error"
-      }
-    }
-  }
 }
