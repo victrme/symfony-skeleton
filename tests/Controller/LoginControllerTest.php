@@ -41,7 +41,7 @@ class LoginControllerTest extends WebTestCase
         // Denied - Can't login with invalid email address.
         $this->client->request('GET', '/login');
         self::assertResponseIsSuccessful();
-        
+
         $this->client->submitForm('Sign in', [
             '_username' => 'doesNotExist@example.com',
             '_password' => 'password',

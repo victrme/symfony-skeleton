@@ -18,7 +18,7 @@ class RegisterFormType extends AbstractType
     {
         $builder
             ->add('email', null, [
-                'label' => 'register.label.email'
+                'label' => 'register.label.email',
             ])
             ->add('agreeTerms', CheckboxType::class, [
                 'label' => 'register.label.terms',

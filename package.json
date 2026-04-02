@@ -4,10 +4,10 @@
         "dev": "vite",
         "test": "vitest",
         "build": "vite build",
-        "fmt": "biome format .",
-        "fmt:fix": "biome format --write .",
-        "lint": "biome lint .",
-        "lint:fix": "biome lint --write ."
+        "lint": "biome lint --verbose",
+        "format": "biome format --verbose",
+        "lint:fix": "biome lint --write",
+        "format:fix": "biome format --write"
     },
     "devDependencies": {
         "@biomejs/biome": "^2.4.10",

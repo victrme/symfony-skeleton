@@ -20,10 +20,10 @@ final class MailController extends AbstractController
     {
         $mailer->send(
             new Email()
-                ->from("noreply@example.com")
-                ->to("client@domain.com")
-                ->subject("Hello World !")
-                ->text("This email has been correctly sent !")
+                ->from('noreply@example.com')
+                ->to('client@domain.com')
+                ->subject('Hello World !')
+                ->text('This email has been correctly sent !')
         );
 
         return $this->redirectToRoute('app_hello');
