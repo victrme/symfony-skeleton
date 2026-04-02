@@ -1,25 +1,24 @@
 {
-  "type": "module",
-  "scripts": {
-    "dev": "vite",
-    "test": "vitest",
-    "build": "vite build",
-    "fmt": "oxfmt",
-    "lint": "oxlint",
-    "lint:fix": "oxlint --fix",
-    "fmt:check": "oxfmt --check"
-  },
-  "devDependencies": {
-    "@tailwindcss/vite": "^4.2.2",
-    "@types/node": "^24.12.0",
-    "daisyui": "^5.5.19",
-    "oxfmt": "^0.42.0",
-    "oxlint": "^1.57.0",
-    "tailwindcss": "^4.2.2",
-    "typescript": "~5.9.3",
-    "vite": "^8.0.3",
-    "vite-plugin-symfony": "^8.2.4",
-    "vitest": "^4.1.2"
-  },
-  "packageManager": "pnpm@10.6.5"
+    "type": "module",
+    "scripts": {
+        "dev": "vite",
+        "test": "vitest",
+        "build": "vite build",
+        "fmt": "biome format .",
+        "fmt:fix": "biome format --write .",
+        "lint": "biome lint .",
+        "lint:fix": "biome lint --write ."
+    },
+    "devDependencies": {
+        "@biomejs/biome": "^2.4.10",
+        "@tailwindcss/vite": "^4.2.2",
+        "@types/node": "^24.12.0",
+        "daisyui": "^5.5.19",
+        "tailwindcss": "^4.2.2",
+        "typescript": "~5.9.3",
+        "vite": "^8.0.3",
+        "vite-plugin-symfony": "^8.2.4",
+        "vitest": "^4.1.2"
+    },
+    "packageManager": "pnpm@10.6.5"
 }
