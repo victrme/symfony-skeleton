@@ -8,10 +8,11 @@ describe('buttonCounter', () => {
 
     it('updates button text on click', () => {
         buttonCounter()
-        const btn = document.querySelector<HTMLElement>('[data-hello-btn]')!
-        btn.click()
-        expect(btn.textContent).toBe('Clicked 1 times')
-        btn.click()
-        expect(btn.textContent).toBe('Clicked 2 times')
+        const btn = document.querySelector<HTMLElement>('[data-hello-btn]')
+
+        btn?.click()
+        expect(btn?.textContent).toBe('Clicked 1 times')
+        btn?.click()
+        expect(btn?.textContent).toBe('Clicked 2 times')
     })
 })

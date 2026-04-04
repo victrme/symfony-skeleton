@@ -17,9 +17,8 @@ export function toggleCheckboxes() {
     for (const checkbox of getCheckboxes()) {
         const name = checkbox.dataset.helloCheck
         const key = `hello-check:${name}`
-        const storedValue = localStorage.getItem(key) === '1'
 
-        checkbox.checked = storedValue
+        checkbox.checked = localStorage.getItem(key) === '1'
 
         checkbox.addEventListener('change', () => {
             const value = checkbox.checked ? '1' : '0'
@@ -41,8 +40,7 @@ export function updateVerify() {
 
     verify.forEach((paragraph) => {
         const isVerifyDone = paragraph.dataset.helloVerifyDone === 'true'
-        const hideDone = isVerifyDone !== allDone
-        paragraph.hidden = hideDone
+        paragraph.hidden = isVerifyDone !== allDone
     })
 
     if (counter) {
