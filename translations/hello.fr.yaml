@@ -25,12 +25,16 @@ admin:
 
 fixtures:
     label: "Fixtures"
-    sentence: "Connectez-vous avec 'admin@example.com:1234'"
+    sentence: "Ce compte administrateur existe"
 
 email:
     label: "Emails"
+    view: "Aller sur Mailpit"
     send: "Envoyer un email"
-    view: "Voir sur Mailpit"
+
+security:
+    label: "Sécurité"
+    sentence: "Déconnectez-vous et allez sur l'administration"
 
 cli:
     node: "Conteneur Node"

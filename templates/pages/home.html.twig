@@ -57,9 +57,15 @@
                 <input type="checkbox" class="checkbox" data-hello-check="fixtures"/>
                 <span>{{ "fixtures.label" | trans }}</span>
             </label>
-            <p class="list-col-grow text-end">
-                {{ "fixtures.sentence" | trans }}
-            </p>
+            <div class="list-col-grow text-end">
+                <p>
+                    {{ "fixtures.sentence" | trans }}
+                </p>
+                <p class="mt-2">
+                    <code class="badge badge-soft badge-accent">admin@example.com</code>
+                    <code class="badge badge-soft badge-accent">1234</code>
+                </p>
+            </div>
         </li>
         <li class="list-row">
             <label class="label">
@@ -69,11 +75,17 @@
             <p class="list-col-grow text-end">
                 {% if app.user %}
                     <span> {{ app.user.email }} - </span>
-                    <a class="link link-primary" href="/logout">{{ "auth.logout" | trans }}</a>
+                    <a class="link link-primary" href="{{ path('app_logout') }}">
+                        {{ "auth.logout" | trans }}
+                    </a>
                 {% else %}
-                    <a class="link link-primary" href="/login">{{ "auth.login" | trans }}</a>
+                    <a class="link link-primary" href="{{ path('app_login') }}">
+                        {{ "auth.login" | trans }}
+                    </a>
                     or
-                    <a class="link link-primary" href="/register">{{ "auth.signup" | trans }}</a>
+                    <a class="link link-primary" href="{{ path('app_register') }}">
+                        {{ "auth.signup" | trans }}
+                    </a>
                 {% endif %}
             </p>
         </li>
@@ -83,7 +95,9 @@
                 <span>{{ "admin.label" | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
-                <a class="link link-primary" href="{{ path('admin') }}">{{ "admin.link" | trans }}</a>
+                <a class="link link-primary" href="{{ path('admin') }}">
+                    {{ "admin.link" | trans }}
+                </a>
             </p>
         </li>
         <li class="list-row">
@@ -93,14 +107,23 @@
             </label>
             <p class="list-col-grow text-end">
                 <span class="me-1">1. </span>
-                <a class="link link-primary" href="{{ path('app_hello_mail') }}"><span
-                    >{{ "email.send" | trans }}</span
-                    ></a>
-
-                <span class="ms-3 me-1">2. </span>
                 <a class="link link-primary" href="http://localhost:8025" target="_blank">
                     <span>{{ "email.view" | trans }}</span>
                 </a>
+
+                <span class="ms-3 me-1">2. </span>
+                <a class="link link-primary" href="{{ path('app_mail') }}"><span
+                    >{{ "email.send" | trans }}</span
+                    ></a>
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox" data-hello-check="security"/>
+                <span>{{ "security.label" | trans }}</span>
+            </label>
+            <p class="list-col-grow text-end">
+                {{ "security.sentence" | trans }}
             </p>
         </li>
     </ul>

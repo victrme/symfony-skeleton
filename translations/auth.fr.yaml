@@ -1,6 +1,6 @@
 login:
     page: "Connexion"
-    title: "Veuillez vous connecter"
+    title: "Connectez-vous"
     authed: "Vous êtes connecté en tant que"
     logout: "Se déconnecter"
     label:

@@ -30,7 +30,11 @@ fixtures:
 email:
     label: "Emails"
     send: "Send mail"
-    view: "View on mailpit"
+    view: "Go to Mailpit"
+
+security:
+    label: "Security"
+    sentence: "Logout and go to dashboard"
 
 cli:
     node: "Node container"
