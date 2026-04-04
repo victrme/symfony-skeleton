@@ -1,0 +1,44 @@
+title: "Hello world !"
+subtitle: "Ce squelette Symfony fonctionne correctement."
+
+scripts:
+    label: "Scripts"
+
+styles:
+    label: "Styles"
+    sentence: "Cette page devrait être belle"
+
+trans:
+    label: "Traductions"
+    sentence: "Vous devriez pouvoir lire ceci"
+
+auth:
+    label: "Authentification"
+    authed: "connecté en tant que"
+    login: "se connecter"
+    logout: "se déconnecter"
+    signup: "s'inscrire"
+
+admin:
+    label: "Administration"
+    link: "Ouvrir le tableau de bord"
+
+fixtures:
+    label: "Fixtures"
+    sentence: "Connectez-vous avec 'admin@example.com:1234'"
+
+email:
+    label: "Emails"
+    send: "Envoyer un email"
+    view: "Voir sur Mailpit"
+
+cli:
+    node: "Conteneur Node"
+    php: "Conteneur PHP"
+    pnpm: "Pnpm"
+    vite: "Vite"
+    tests: "Tests fonctionnels"
+
+verify:
+    remaining: "étapes à vérifier."
+    done: "Tout est vérifié !"

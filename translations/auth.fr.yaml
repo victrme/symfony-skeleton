@@ -1,0 +1,22 @@
+login:
+    page: "Connexion"
+    title: "Veuillez vous connecter"
+    authed: "Vous êtes connecté en tant que"
+    logout: "Se déconnecter"
+    label:
+        email: "Email"
+        password: "Mot de passe"
+        remember: "Se souvenir de moi"
+        submit: "Se connecter"
+
+register:
+    title: "Inscription"
+    label:
+        submit: "S'inscrire"
+        email: "Email"
+        password: "Mot de passe"
+        terms: "J'accepte les conditions d'utilisation"
+    err:
+        terms_not_agreed: "Vous devez accepter nos conditions."
+        pw_not_blank: "Veuillez saisir un mot de passe"
+        pw_too_short: "Votre mot de passe doit contenir au moins {{ limit }} caractères"
