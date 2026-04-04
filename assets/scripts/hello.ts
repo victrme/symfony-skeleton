@@ -4,7 +4,7 @@ globalThis.window.addEventListener('DOMContentLoaded', () => {
     updateVerify()
 })
 
-function buttonCounter() {
+export function buttonCounter() {
     const btn = document.querySelector<HTMLButtonElement>('[data-hello-btn]')
     let counter = 1
 
@@ -13,7 +13,7 @@ function buttonCounter() {
     })
 }
 
-function toggleCheckboxes() {
+export function toggleCheckboxes() {
     for (const checkbox of getCheckboxes()) {
         const name = checkbox.dataset.helloCheck
         const key = `hello-check:${name}`
@@ -29,7 +29,7 @@ function toggleCheckboxes() {
     }
 }
 
-function updateVerify() {
+export function updateVerify() {
     const counterName = '[data-hello-verify-count]'
     const verifyName = '[data-hello-verify-done]'
     const counter = document.querySelector<HTMLElement>(counterName)
@@ -50,7 +50,7 @@ function updateVerify() {
     }
 }
 
-function getCheckboxes(): HTMLInputElement[] {
+export function getCheckboxes(): HTMLInputElement[] {
     const selector = '[data-hello-check]'
     const checkboxes = document.querySelectorAll<HTMLInputElement>(selector)
 
