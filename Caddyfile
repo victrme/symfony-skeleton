@@ -5,17 +5,12 @@ localhost {
     encode zstd gzip
 
     route /build/* {
-        @static file
-        file_server @static
-        reverse_proxy node:5173
-    }
-
-    log {
-            output file /var/log/caddy/example.access.log
-            format console
-        }
+       @static file
+       file_server @static
+       reverse_proxy node:5173
+   }
 
     request_body {
-                     max_size 20MB
-                 }
+         max_size 20MB
+     }
 }
