@@ -19,6 +19,14 @@ auth:
     logout: "log out"
     signup: "register"
 
+admin:
+    label: "Administration"
+    link: "Open dashboard"
+
+fixtures:
+    label: "Fixtures"
+    sentence: "Users loaded from fixtures"
+
 email:
     label: "Emails"
     send: "Send mail"
@@ -27,6 +35,10 @@ email:
 cli:
     node: "Node container"
     php: "PHP container"
-    pnpm: "PNPM install"
-    vite: "Vite dev server"
+    pnpm: "Pnpm"
+    vite: "Vite"
     tests: "Functional tests"
+
+verify:
+    remaining: "steps remaining."
+    done: "Everything is verified!"

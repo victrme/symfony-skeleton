@@ -1,7 +1,7 @@
 {% trans_default_domain 'hello' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'title' | trans }}{% endblock %}
+{% block title %}{{ 'title' | trans }} - Symfony Skeleton{% endblock %}
 
 {% block body %}
     <div class="py-8 mt-8 text-center">
@@ -17,19 +17,19 @@
     <ul class="list">
         <li class="list-row items-center">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="scripts"/>
                 <span>{{ "scripts.label" | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
                 <button class="btn btn-sm btn-accent" data-hello-btn="">
-                    Clicked 0 times
+                    Never clicked
                 </button>
             </p>
         </li>
         <li class="list-row">
             <p>
                 <label class="label">
-                    <input type="checkbox" class="checkbox"/>
+                    <input type="checkbox" class="checkbox" data-hello-check="styles"/>
                     <span>{{ "styles.label" | trans }}</span>
                 </label>
             </p>
@@ -39,11 +39,10 @@
         </li>
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="trans"/>
                 <span>{{ "trans.label" | trans }}</span>
             </label>
-            <p>
-            </p>
+
             <p class="list-col-grow text-end">
                 {{ "trans.sentence" | trans }}
             </p>
@@ -55,12 +54,21 @@
     <ul class="list">
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="fixtures"/>
+                <span>{{ "fixtures.label" | trans }}</span>
+            </label>
+            <p class="list-col-grow text-end">
+                {{ "fixtures.sentence" | trans }}
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox" data-hello-check="auth"/>
                 <span>{{ "auth.label" | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
                 {% if app.user %}
-                    <span>{{ 'auth.authed' | trans }} {{ app.user.email }}, </span>
+                    <span> {{ app.user.email }} - </span>
                     <a class="link link-primary" href="/logout">{{ "auth.logout" | trans }}</a>
                 {% else %}
                     <a class="link link-primary" href="/login">{{ "auth.login" | trans }}</a>
@@ -71,7 +79,16 @@
         </li>
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="admin"/>
+                <span>{{ "admin.label" | trans }}</span>
+            </label>
+            <p class="list-col-grow text-end">
+                <a class="link link-primary" href="{{ path('admin') }}">{{ "admin.link" | trans }}</a>
+            </p>
+        </li>
+        <li class="list-row">
+            <label class="label">
+                <input type="checkbox" class="checkbox" data-hello-check="email"/>
                 <span>{{ "email.label" | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
@@ -98,7 +115,7 @@
     <ul class="list">
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="cli-node"/>
                 <span>{{ "cli.node" | trans }}</span>
             </label>
 
@@ -110,7 +127,7 @@
         </li>
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="cli-php"/>
                 <span>{{ "cli.php" | trans }}</span>
             </label>
 
@@ -122,7 +139,7 @@
         </li>
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="cli-pnpm"/>
                 <span>{{ "cli.pnpm" | trans }}</span>
             </label>
 
@@ -134,33 +151,28 @@
         </li>
         <li class="list-row">
             <label class="label">
-                <input type="checkbox" class="checkbox"/>
+                <input type="checkbox" class="checkbox" data-hello-check="cli-vite"/>
                 <span>{{ "cli.vite" | trans }}</span>
             </label>
 
             <p class="list-col-grow text-end">
                 <code class="badge badge-soft badge-accent">
-                    make dev
-                </code>
-            </p>
-        </li>
-        <li class="list-row">
-            <label class="label">
-                <input type="checkbox" class="checkbox"/>
-                <span>{{ "cli.tests" | trans }}</span>
-            </label>
-
-            <p class="list-col-grow text-end">
-                <code class="badge badge-soft badge-accent">
-                    make composer run test
+                    make pnpm dev
                 </code>
             </p>
         </li>
     </ul>
 
-    <p class="text-center mt-16">
-        <a class="btn btn-soft btn-accent" href="/">
-            Back to symfony home
-        </a>
-    </p>
+    <div class="my-16 text-center">
+        <p data-hello-verify-done="false">
+            <span class="badge" data-hello-verify-count></span>
+            <span>{{ "verify.remaining" | trans }}</span>
+        </p>
+
+        <p data-hello-verify-done="true">
+            <span class="badge badge-soft badge-success">
+                {{ "verify.done" | trans }}
+            </span>
+        </p>
+    </div>
 {% endblock %}

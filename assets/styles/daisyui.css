@@ -2,6 +2,6 @@
 
 @plugin "daisyui" {
     themes:
-        retro --default,
-        dim --prefersdark;
+        corporate --default,
+        dracula --prefersdark;
 }
