@@ -4,6 +4,10 @@
 
 init:
 	@docker compose up -d --build --remove-orphans
+	@docker compose exec php composer install
+	@docker compose exec php symfony console doctrine:migrations:migrate --no-interaction
+	@docker compose exec php symfony console doctrine:fixtures:load --no-interaction
+	@docker compose exec node pnpm install && pnpm run build
 
 up:
 	@docker compose up -d
@@ -27,9 +31,6 @@ node:
 #
 # Tools & scripts
 #
-
-dev:
-	@docker compose exec node pnpm run dev
 
 pnpm:
 	@docker compose exec node pnpm $(filter-out $@,$(MAKECMDGOALS))

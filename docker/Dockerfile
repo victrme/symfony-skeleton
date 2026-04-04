@@ -15,13 +15,14 @@ RUN --mount=type=cache,target=/var/cache/apt \
 
 RUN echo "memory_limit=1G" > /usr/local/etc/php/conf.d/memory-limit.ini
 
-COPY --link --from=composer:latest /usr/bin/composer /usr/bin/composer
-COPY --link --from=ghcr.io/symfony-cli/symfony-cli:latest /usr/local/bin/symfony /usr/local/bin/symfony
-
 RUN groupadd -g $uid $user && \
     useradd -u $uid -g $user -m -G www-data -d /home/$user $user
 
 WORKDIR /var/www/html
+
+COPY --link --from=composer:latest /usr/bin/composer /usr/bin/composer
+COPY --link --from=ghcr.io/symfony-cli/symfony-cli:latest /usr/local/bin/symfony /usr/local/bin/symfony
+
 COPY --chown=$user:$user . .
 USER $user
 
