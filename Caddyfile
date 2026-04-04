@@ -1,20 +1,21 @@
 localhost {
-
     root * /var/www/html/public
     php_fastcgi php:9000
     file_server
     encode zstd gzip
 
-    handle /build/* {
+    route /build/* {
+        @static file
+        file_server @static
         reverse_proxy node:5173
     }
 
     log {
-        output file /var/log/caddy/example.access.log
-        format console
-    }
+            output file /var/log/caddy/example.access.log
+            format console
+        }
 
     request_body {
-        max_size 20MB
-    }
+                     max_size 20MB
+                 }
 }
