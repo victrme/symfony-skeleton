@@ -27,5 +27,5 @@
 ###< pentatrion/vite-bundle ###
 
 ###> phpstan/phpstan ###
-phpstan.neon
+tools/phpstan.neon
 ###< phpstan/phpstan ###
