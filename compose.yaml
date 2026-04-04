@@ -1,14 +1,14 @@
 services:
     php:
         build:
-            dockerfile: Dockerfile
+            dockerfile: docker/Dockerfile
             target: php
         volumes:
             - ./:/var/www/html
 
     node:
         build:
-            dockerfile: Dockerfile
+            dockerfile: docker/Dockerfile
             target: node
         working_dir: /var/www/html
         tty: true

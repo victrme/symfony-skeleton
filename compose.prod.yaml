@@ -1,0 +1,14 @@
+services:
+    php:
+        build:
+            dockerfile: docker/prod/Dockerfile
+            target: php
+        volumes:
+            - ./:/var/www/html
+
+    node:
+        build:
+            dockerfile: docker/prod/Dockerfile
+            target: node
+        volumes:
+            - ./:/var/www/html
