@@ -29,7 +29,7 @@ node:
 	@docker compose exec -it node bash
 
 #
-# Tools & scripts
+# Tools
 #
 
 pnpm:
@@ -43,3 +43,13 @@ symfony:
 
 %:
 	@:
+
+#
+# Scripts
+#
+
+check:
+	@docker compose exec php composer run lint
+	@docker compose exec php composer run format
+	@docker compose exec node pnpm run lint
+	@docker compose exec node node run format

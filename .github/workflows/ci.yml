@@ -1,0 +1,67 @@
+name: CI
+
+on:
+    push:
+    pull_request:
+
+jobs:
+    check-php:
+        name: Check PHP
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   name: Setup PHP
+                uses: shivammathur/setup-php@v2
+                with:
+                    php-version: '8.4'
+                    tools: composer
+
+            -   name: Cache Composer dependencies
+                uses: actions/cache@v4
+                with:
+                    path: vendor
+                    key: composer-${{ hashFiles('composer.lock') }}
+                    restore-keys: composer-
+
+            -   name: Cache PHPStan result cache
+                uses: actions/cache@v4
+                with:
+                    path: /tmp/phpstan
+                    key: phpstan-${{ hashFiles('composer.lock', 'src/**', 'tests/**') }}
+                    restore-keys: phpstan-
+
+            -   name: Install dependencies
+                run: composer install --no-interaction --prefer-dist
+
+            -   name: Lint
+                run: composer run lint
+
+            -   name: Format
+                run: composer run format
+
+    check-node:
+        name: Check Node
+        runs-on: ubuntu-latest
+        steps:
+            -   uses: actions/checkout@v4
+
+            -   name: Setup pnpm
+                uses: pnpm/action-setup@v4
+                with:
+                    version: '10.6.5'
+
+            -   name: Setup Node
+                uses: actions/setup-node@v4
+                with:
+                    node-version: lts/*
+                    cache: pnpm
+
+            -   name: Install dependencies
+                run: pnpm install --frozen-lockfile
+
+            -   name: Lint
+                run: pnpm run lint
+
+            -   name: Format
+                run: pnpm run format
