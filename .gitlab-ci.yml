@@ -18,7 +18,6 @@ check-php:
                 - composer.lock
         paths:
             - vendor/
-            - /tmp/phpstan/
     script:
         - composer run lint
         - composer run format
