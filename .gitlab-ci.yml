@@ -17,7 +17,7 @@ check-php:
             files:
                 - composer.lock
         paths:
-            - vendor/
+            - ~/.composer/cache/
     script:
         - composer run lint
         - composer run format
