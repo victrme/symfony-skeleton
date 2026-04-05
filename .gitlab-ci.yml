@@ -3,8 +3,8 @@ stages:
 
 workflow:
     rules:
-        - if: $CI_COMMIT_BRANCH == "main"
-        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+        -   if: $CI_COMMIT_BRANCH == "main"
+        -   if: $CI_PIPELINE_SOURCE == "merge_request_event"
 
 check-php:
     stage: check
@@ -17,7 +17,7 @@ check-php:
             files:
                 - composer.lock
         paths:
-            - ~/.composer/cache/
+            - vendor/
     script:
         - composer run lint
         - composer run format
