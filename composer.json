@@ -81,7 +81,7 @@
             "php bin/console --env=test doctrine:schema:create"
         ],
         "test": ["@pre-test", "vendor/bin/phpunit"],
-        "lint": "vendor/bin/phpstan analyse",
+        "lint": "vendor/bin/phpstan analyse -c phpstan.neon",
         "format": "vendor/bin/php-cs-fixer fix --dry-run --verbose",
         "format:fix": "vendor/bin/php-cs-fixer fix --verbose"
     },
