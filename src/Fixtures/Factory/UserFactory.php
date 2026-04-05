@@ -12,9 +12,8 @@ use Zenstruck\Foundry\Persistence\PersistentObjectFactory;
 final class UserFactory extends PersistentObjectFactory
 {
     public function __construct(
-        private readonly UserPasswordHasherInterface $passwordHasher
-    )
-    {
+        private readonly UserPasswordHasherInterface $passwordHasher,
+    ) {
     }
 
     #[\Override]
@@ -29,7 +28,7 @@ final class UserFactory extends PersistentObjectFactory
         return [
             'email' => self::faker()->email(),
             'password' => '1234',
-            'roles' => ["ROLE_USER"],
+            'roles' => ['ROLE_USER'],
         ];
     }
 
