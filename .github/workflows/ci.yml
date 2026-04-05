@@ -10,7 +10,7 @@ on:
 
 jobs:
     php:
-        name: Verify PHP
+        name: PHP
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v4
@@ -37,7 +37,7 @@ jobs:
                 run: composer run format
 
     node:
-        name: Verify Node
+        name: Node
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v4
