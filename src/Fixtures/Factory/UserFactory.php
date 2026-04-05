@@ -14,15 +14,14 @@ final class UserFactory extends PersistentObjectFactory
     public function __construct(
         private readonly UserPasswordHasherInterface $passwordHasher,
     ) {
+        parent::__construct();
     }
 
-    #[\Override]
     public static function class(): string
     {
         return User::class;
     }
 
-    #[\Override]
     protected function defaults(): array|callable
     {
         return [

@@ -7,16 +7,14 @@ FROM php:8.4.19-fpm AS php
 ARG user=www-html
 ARG uid=1000
 
-RUN --mount=type=cache,target=/var/cache/apt \
-    apt-get update && apt-get install -y --no-install-recommends \
-    git unzip libzip-dev libicu-dev && \
+RUN --mount=type=cache,target=/var/cache/apt apt-get update && \
+    apt-get install -y --no-install-recommends git unzip libzip-dev libicu-dev && \
     docker-php-ext-install intl pdo_mysql zip opcache && \
     rm -rf /var/lib/apt/lists/*
 
 RUN echo "memory_limit=1G" > /usr/local/etc/php/conf.d/memory-limit.ini
 
-RUN groupadd -g $uid $user && \
-    useradd -u $uid -g $user -m -G www-data -d /home/$user $user
+RUN groupadd -g $uid $user && useradd -u $uid -g $user -m -G www-data -d /home/$user $user
 
 WORKDIR /var/www/html
 
