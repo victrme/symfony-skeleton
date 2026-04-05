@@ -1,0 +1,36 @@
+stages:
+    - check
+
+check-php:
+    stage: check
+    image: php:8.4-cli
+    before_script:
+        - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        - composer install --no-interaction --prefer-dist
+    cache:
+        key:
+            files:
+                - composer.lock
+        paths:
+            - vendor/
+            - /tmp/phpstan/
+    script:
+        - composer run lint
+        - composer run format
+
+check-node:
+    stage: check
+    image: node:25.8.2
+    before_script:
+        - corepack enable
+        - corepack prepare pnpm@10.6.5 --activate
+        - pnpm install --frozen-lockfile
+    cache:
+        key:
+            files:
+                - pnpm-lock.yaml
+        paths:
+            - node_modules/
+    script:
+        - pnpm run lint
+        - pnpm run format
