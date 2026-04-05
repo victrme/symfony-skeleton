@@ -1,0 +1,11 @@
+parameters:
+    level: 6
+    paths:
+        - src/
+        - tests/
+    ignoreErrors:
+        -
+            identifier: property.unusedType
+            path: src/Entity/*
+            message: '#is never assigned#'
+    tmpDir: var/.phpstan.cache
