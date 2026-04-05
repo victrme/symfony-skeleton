@@ -9,8 +9,8 @@ on:
             - main
 
 jobs:
-    check-php:
-        name: Check PHP
+    php:
+        name: Verify PHP
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v4
@@ -21,16 +21,14 @@ jobs:
                     php-version: '8.4'
                     tools: composer
 
-            -   name: Cache Composer dependencies
-                id: composer-cache
-                uses: actions/cache@v4
-                with:
-                    path: vendor
-                    key: composer-${{ hashFiles('composer.lock') }}
-                    restore-keys: composer-
+            -   name: Install Symfony CLI
+                run: curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-            -   name: Install dependencies
+            -   name: Install
                 run: composer install --no-interaction --prefer-dist
+
+            -   name: Requirements
+                run: symfony check:requirements
 
             -   name: Lint
                 run: composer run lint
@@ -38,8 +36,8 @@ jobs:
             -   name: Format
                 run: composer run format
 
-    check-node:
-        name: Check Node
+    node:
+        name: Verify Node
         runs-on: ubuntu-latest
         steps:
             -   uses: actions/checkout@v4
@@ -55,8 +53,11 @@ jobs:
                     node-version: '25.8.2'
                     cache: pnpm
 
-            -   name: Install dependencies
+            -   name: Install
                 run: pnpm install --frozen-lockfile
+
+            -   name: Build
+                run: pnpm run build
 
             -   name: Lint
                 run: pnpm run lint
