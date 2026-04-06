@@ -8,11 +8,14 @@ use Doctrine\Persistence\ObjectManager;
 
 class AppFixtures extends Fixture
 {
+    public const ADMIN_EMAIL = 'admin@example.com';
+
     public function load(ObjectManager $manager): void
     {
         UserFactory::createOne()
-            ->setEmail('admin@example.com')
-            ->setRoles(['ROLE_ADMIN']);
+            ->setEmail(self::ADMIN_EMAIL)
+            ->setRoles(['ROLE_ADMIN'])
+        ;
 
         UserFactory::createMany(20);
 

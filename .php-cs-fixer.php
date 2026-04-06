@@ -1,6 +1,9 @@
 <?php
 
-$finder = new PhpCsFixer\Finder()
+use PhpCsFixer\Config;
+use PhpCsFixer\Finder;
+
+$finder = new Finder()
     ->in(__DIR__)
     ->exclude('var')
     ->notPath([
@@ -8,9 +11,10 @@ $finder = new PhpCsFixer\Finder()
         'config/reference.php',
     ]);
 
-return new PhpCsFixer\Config()
+return new Config()
     ->setRules([
-        '@Symfony' => true,
+        '@PhpCsFixer' => true,
+        'single_line_comment_style' => false
     ])
     ->setFinder($finder)
     ->setCacheFile(__DIR__ . '/var/.php-cs-fixer.cache');

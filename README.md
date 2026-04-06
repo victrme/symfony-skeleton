@@ -184,7 +184,7 @@ mailpit:
 ```
 
 ```ts
-/**
+/*
  * Retries a fetch with exponential backoff.
  * Needed because the external API occasionally returns 429 on burst traffic.
  */
@@ -198,7 +198,7 @@ $map = [
   \T_PRIVATE => \T_PRIVATE_SET,
 ];
 
-/**
+/*
  * Emulate token
  */
 
