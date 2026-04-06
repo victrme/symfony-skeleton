@@ -81,7 +81,13 @@
             "php bin/console --env=test doctrine:schema:create"
         ],
         "test": ["@pre-test", "vendor/bin/phpunit"],
-        "lint": "vendor/bin/phpstan analyse",
+        "lint": [
+            "symfony console lint:yaml config/",
+            "symfony console lint:container",
+            "symfony console lint:twig templates/",
+            "symfony console lint:translations --locale=en --locale=fr",
+            "vendor/bin/phpstan analyse"
+        ],
         "format": "vendor/bin/php-cs-fixer fix --dry-run --verbose",
         "format:fix": "vendor/bin/php-cs-fixer fix --verbose"
     },
