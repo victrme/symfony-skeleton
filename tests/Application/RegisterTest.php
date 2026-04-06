@@ -56,7 +56,7 @@ class RegisterTest extends WebTestCase
         ]);
 
         self::assertNotNull($this->userRepository->findOneBy([
-            'email' => 'me@example.com'
+            'email' => 'me@example.com',
         ]));
     }
 

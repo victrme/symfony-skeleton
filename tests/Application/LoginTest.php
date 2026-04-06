@@ -21,7 +21,7 @@ class LoginTest extends WebTestCase
     use Factories;
 
     private KernelBrowser $client;
-    private string $submitText = "";
+    private string $submitText = '';
 
     protected function setUp(): void
     {
