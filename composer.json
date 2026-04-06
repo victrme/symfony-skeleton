@@ -60,14 +60,17 @@
         },
         "post-install-cmd": ["@auto-scripts"],
         "post-update-cmd": ["@auto-scripts"],
-        "test": ["vendor/bin/phpunit"],
-        "lint": [
+        "symfony:lint": [
             "php bin/console lint:yaml config/",
             "php bin/console lint:container",
             "php bin/console lint:twig templates/",
-            "php bin/console lint:translations --locale=en --locale=fr",
-            "vendor/bin/phpstan analyse"
+            "php bin/console lint:translations --locale=en --locale=fr"
         ],
+        "phpstan": "vendor/bin/phpstan",
+        "phpunit": "php bin/phpunit",
+        "phpcsfixer": "vendor/bin/php-cs-fixer",
+        "test": "@phpunit",
+        "lint": ["@phpstan", "@symfony:lint"],
         "format": "vendor/bin/php-cs-fixer fix --dry-run --verbose",
         "format:fix": "vendor/bin/php-cs-fixer fix --verbose"
     },

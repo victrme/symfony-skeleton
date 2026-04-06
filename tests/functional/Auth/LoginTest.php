@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace functional\Auth;
 
 use App\Fixtures\AppFixtures;
 use App\Fixtures\Factory\UserFactory;

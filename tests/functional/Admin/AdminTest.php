@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Tests\Controller;
+namespace functional\Admin;
 
 use App\Fixtures\AppFixtures;
 use App\Fixtures\Factory\UserFactory;
@@ -22,8 +22,6 @@ final class AdminTest extends WebTestCase
 
     private KernelBrowser $client;
     private UserRepository $userRepository;
-    private string $submitText = '';
-    private string $titleText = '';
 
     protected function setUp(): void
     {

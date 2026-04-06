@@ -87,6 +87,17 @@ docker compose exec php composer test
 docker compose exec node pnpm test
 ```
 
+File structure:
+
+```
+tests/
+   ├── functional/      # PHP - HTTP tests
+   ├── unit/
+   │   ├── php/         # PHP - Logic tests
+   │   └── node/        # TypeScript - DOM tests
+   └── bootstrap.php
+```
+
 ## Linting & Formatting
 
 ```bash

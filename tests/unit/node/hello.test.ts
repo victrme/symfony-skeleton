@@ -1,5 +1,5 @@
-import { beforeEach, describe, expect, it } from 'vitest'
-import { buttonCounter } from '../../assets/scripts/hello.ts'
+import {beforeEach, describe, expect, it} from 'vitest'
+import {buttonCounter} from '../../../assets/scripts/hello.ts'
 
 describe('buttonCounter', () => {
     beforeEach(() => {
