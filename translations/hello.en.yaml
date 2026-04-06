@@ -1,3 +1,6 @@
+head:
+    description: "A skeleton to launch your symfony project with everything you need inside."
+
 title: "Hello world !"
 subtitle: "This Symfony skeleton project is working as intended."
 

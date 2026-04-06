@@ -1,23 +1,46 @@
 <!DOCTYPE html>
-<html>
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="apple-mobile-web-app-title" content="Symfony Skeleton"/>
+    <meta name="description" content="{% block head_description %}{% endblock %}">
 
-        <title>{% block title %}Welcome!{% endblock %}</title>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 128 128%22><text y=%221.2em%22 font-size=%2296%22>⚫️</text><text y=%221.3em%22 x=%220.2em%22 font-size=%2276%22 fill=%22%23fff%22>sf</text></svg>">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% block stylesheets %}
-            {{ vite_entry_link_tags('app') }}
-        {% endblock %}
+    <link rel="manifest" href="{{ asset('/site.webmanifest?v=2') }}"/>
+    <link rel="shortcut icon" href="{{ asset('/favicon.ico?v=2') }}"/>
+    <link rel="icon" type="image/png" href="{{ asset('icons/favicon-96x96.png?v=2') }}" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('icons/favicon.svg?v=2') }}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('icons/apple-touch-icon.png?v=2') }}"/>
 
-        {% block javascripts %}
-            {{ vite_entry_script_tags('app') }}
-        {% endblock %}
-    </head>
-    <body>
-        <main class="sm:w-lg sm:m-auto px-6">
-            {% block body %}{% endblock %}
-        </main>
-    </body>
+    <link rel="canonical" href="{% block head_canonical %}{{ app.request.uri }}{% endblock %}">
+
+    {# Open Graph #}
+    <meta property="og:title"
+          content="{% block head_og_title %}{% block head_og_title_fallback %}{{ block('title') }}{% endblock %}{% endblock %}">
+    <meta property="og:description" content="{% block head_og_description %}{{ block('head_description') }}{% endblock %}">
+    <meta property="og:url" content="{% block head_og_url %}{{ app.request.uri }}{% endblock %}">
+    <meta property="og:type" content="{% block head_og_type %}website{% endblock %}">
+
+    {# Twitter Card #}
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="{{ block('head_og_title') }}">
+    <meta name="twitter:description" content="{{ block('head_og_description') }}">
+
+    {% block head_extra %}{% endblock %}
+
+    {% block stylesheets %}
+        {{ vite_entry_link_tags('app') }}
+    {% endblock %}
+
+    {% block javascripts %}
+        {{ vite_entry_script_tags('app') }}
+    {% endblock %}
+</head>
+<body>
+<main class="sm:w-lg sm:m-auto px-6">
+    {% block body %}{% endblock %}
+</main>
+</body>
 </html>
