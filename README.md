@@ -108,7 +108,7 @@ make pnpm format
 make pnpm format:fix
 ```
 
-Biome is configured in `biome.json`. It respects `.editorconfig` for indentation and enforces single quotes, no semicolons, no trailing commas.
+Biome is configured in `biome.json`. Uses `.editorconfig` first.
 
 ## Conventions
 
@@ -140,7 +140,7 @@ templates/
   layouts/          ← sub-layouts
 ```
 
-Long .html.twig files can be splitwith smaller sections:
+Long .html.twig files can be split with smaller sections:
 
 - Entry file and folder has the same name.
 - Starting with a _underscore.
@@ -156,10 +156,58 @@ templates/
       dashboard.html.twig
 ```
 
+### Formatting
+
+Formatting must at least match theses rules:
+
+- Always use spaces
+- Indent with 4 spaces
+- Lines must be below 144 characters
+- Use single quotes when possible
+
+**Note:** Some files require different formatting style (Makefile with tabs, JSON with double quotes, etc). But logic files, PHP & JS/TS, must
+be
+formatted as mentioned above.
+
 ### Comments
 
-- Block separators use 3 lines of `#` (in YAML/Makefile) or a single PHPDoc/JSDoc block.
-- Avoid inline comments unless the logic is non-obvious.
+- Block separators use at least 3 lines of `#` (in YAML/Makefile) or a single PHPDoc/JSDoc block.
+- Avoid inline comments, try to explain difficult logic in block comments.
+
+```yaml
+#
+# Optionals
+#
+
+mailpit:
+    image: axllent/mailpit
+```
+
+```ts
+/**
+ * Retries a fetch with exponential backoff.
+ * Needed because the external API occasionally returns 429 on burst traffic.
+ */
+function fetchWithRetry(url: string): Promise<Response> {
+```
+
+```php
+$map = [
+  \T_PUBLIC => \T_PUBLIC_SET,
+  \T_PROTECTED => \T_PROTECTED_SET,
+  \T_PRIVATE => \T_PRIVATE_SET,
+];
+
+/**
+ * Emulate token
+ */
+
+array_splice($tokens, $i, 4, [
+  new Token(
+    $map[$token->id], $token->text . '(' . $tokens[$i + 2]->text . ')',
+    $token->line, $token->pos),
+]);
+```
 
 ### Docker Images
 
