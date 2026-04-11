@@ -14,7 +14,7 @@ jobs:
         runs-on: ubuntu-latest
         services:
             mariadb:
-                image: mariadb:12.3.1
+                image: mariadb
                 env:
                     MARIADB_ROOT_PASSWORD: root
                     MARIADB_DATABASE: db_symfony_test
@@ -22,62 +22,62 @@ jobs:
                     - 3306:3306
                 options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=10s --health-timeout=5s --health-retries=5
         steps:
-            -   uses: actions/checkout@v5
+            - uses: actions/checkout@v5
 
-            -   name: Setup PHP
-                uses: shivammathur/setup-php@v2
-                with:
-                    php-version: '8.4'
-                    tools: composer
+            - name: Setup PHP
+              uses: shivammathur/setup-php@v2
+              with:
+                  php-version: "8.4"
+                  tools: composer
 
-            -   name: Install Symfony CLI
-                run: curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
+            - name: Install Symfony CLI
+              run: curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
 
-            -   name: Install
-                run: composer install --no-interaction --prefer-dist
+            - name: Install
+              run: composer install --no-interaction --prefer-dist
 
-            -   name: Requirements
-                run: symfony check:requirements
+            - name: Requirements
+              run: symfony check:requirements
 
-            -   name: Lint
-                run: composer run lint
+            - name: Lint
+              run: composer run lint
 
-            -   name: Format
-                run: composer run format
+            - name: Format
+              run: composer run format
 
-            -   name: Test
-                run: composer run test
-                env:
-                    DATABASE_URL: mysql://root:root@127.0.0.1:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
+            - name: Test
+              run: composer run test
+              env:
+                  DATABASE_URL: mysql://root:root@127.0.0.1:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
 
     node:
         name: Node
         runs-on: ubuntu-latest
         steps:
-            -   uses: actions/checkout@v5
+            - uses: actions/checkout@v5
 
-            -   name: Setup pnpm
-                uses: pnpm/action-setup@v5
-                with:
-                    version: '10.6.5'
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v5
+              with:
+                  version: "10.6.5"
 
-            -   name: Setup Node
-                uses: actions/setup-node@v6
-                with:
-                    node-version: '25.8.2'
-                    cache: pnpm
+            - name: Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "25.8.2"
+                  cache: pnpm
 
-            -   name: Install
-                run: pnpm install --frozen-lockfile
+            - name: Install
+              run: pnpm install --frozen-lockfile
 
-            -   name: Build
-                run: pnpm run build
+            - name: Build
+              run: pnpm run build
 
-            -   name: Lint
-                run: pnpm run lint
+            - name: Lint
+              run: pnpm run lint
 
-            -   name: Format
-                run: pnpm run format
+            - name: Format
+              run: pnpm run format
 
-            -   name: Test
-                run: pnpm run test
+            - name: Test
+              run: pnpm run test

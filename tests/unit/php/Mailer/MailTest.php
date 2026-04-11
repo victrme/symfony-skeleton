@@ -23,10 +23,10 @@ final class MailTest extends KernelTestCase
     public function testMailSendsEmail(): void
     {
         $this->mailer->send(
-            subject: "Hello world !",
-            text: "This is a test mail.",
-            to: "client@domain.com",
-            from: "noreply@example.com"
+            subject: 'Hello world !',
+            text: 'This is a test mail.',
+            to: 'client@domain.com',
+            from: 'noreply@example.com'
         );
 
         $this->assertEmailCount(1);
