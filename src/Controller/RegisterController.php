@@ -14,9 +14,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegisterController extends AbstractController
 {
-    public function __construct(private readonly \Symfony\Bundle\SecurityBundle\Security $security, private readonly \Doctrine\ORM\EntityManagerInterface $entityManager, private readonly \Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface $userPasswordHasher)
-    {
-    }
+    public function __construct(
+        private readonly Security $security,
+        private readonly EntityManagerInterface $entityManager,
+        private readonly UserPasswordHasherInterface $userPasswordHasher
+    ) {}
+
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request,

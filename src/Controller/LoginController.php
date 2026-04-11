@@ -11,14 +11,14 @@ use Symfony\Component\Security\Http\Authentication\AuthenticationUtils;
 
 class LoginController extends AbstractController
 {
-    public function __construct(private readonly \Symfony\Component\Security\Http\Authentication\AuthenticationUtils $authenticationUtils)
-    {
-    }
+    public function __construct(private readonly AuthenticationUtils $authenticationUtils) {}
+
     #[Route(path: '/login', name: 'app_login')]
     public function login(): Response
     {
         $error = $this->authenticationUtils->getLastAuthenticationError();
         $lastUsername = $this->authenticationUtils->getLastUsername();
+
         return $this->render('pages/login.html.twig', [
             'last_username' => $lastUsername,
             'error' => $error,
