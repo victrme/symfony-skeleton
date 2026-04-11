@@ -2,7 +2,8 @@
     "type": "module",
     "scripts": {
         "dev": "vite",
-        "test": "vitest",
+        "test": "vitest --run",
+        "test:watch": "vitest",
         "build": "vite build",
         "lint": "biome lint --verbose",
         "format": "biome format --verbose",

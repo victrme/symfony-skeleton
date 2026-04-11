@@ -53,3 +53,7 @@ check:
 	@docker compose exec php composer run format
 	@docker compose exec node pnpm run lint
 	@docker compose exec node pnpm run format
+
+test:
+	@docker compose exec php composer run test
+	@docker compose exec node pnpm test
