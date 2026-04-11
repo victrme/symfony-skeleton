@@ -14,12 +14,12 @@ use Symfony\Component\Routing\Attribute\Route;
 
 class RegisterController extends AbstractController
 {
+    public function __construct(private readonly \Symfony\Bundle\SecurityBundle\Security $security, private readonly \Doctrine\ORM\EntityManagerInterface $entityManager, private readonly \Symfony\Component\PasswordHasher\Hasher\UserPasswordHasherInterface $userPasswordHasher)
+    {
+    }
     #[Route('/register', name: 'app_register')]
     public function register(
         Request $request,
-        Security $security,
-        EntityManagerInterface $entityManager,
-        UserPasswordHasherInterface $userPasswordHasher,
     ): ?Response {
         $user = new User();
         $form = $this->createForm(RegisterFormType::class, $user);
@@ -28,12 +28,12 @@ class RegisterController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             /** @var string $plainPassword */
             $plainPassword = $form->get('plainPassword')->getData();
-            $user->setPassword($userPasswordHasher->hashPassword($user, $plainPassword));
+            $user->setPassword($this->userPasswordHasher->hashPassword($user, $plainPassword));
 
-            $entityManager->persist($user);
-            $entityManager->flush();
+            $this->entityManager->persist($user);
+            $this->entityManager->flush();
 
-            return $security->login($user, 'form_login', 'main');
+            return $this->security->login($user, 'form_login', 'main');
         }
 
         return $this->render('pages/register.html.twig', [
