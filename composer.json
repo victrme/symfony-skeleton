@@ -46,6 +46,7 @@
         "phpstan/phpstan-doctrine": "^2.0",
         "phpstan/phpstan-symfony": "^2.0.15",
         "phpunit/phpunit": "^12.5.16",
+        "rector/rector": "^2.4",
         "symfony/browser-kit": "7.4.*",
         "symfony/css-selector": "7.4.*",
         "symfony/debug-bundle": "7.4.*",
@@ -68,10 +69,12 @@
             "php bin/console lint:translations --locale=en --locale=fr"
         ],
         "phpstan": "vendor/bin/phpstan",
+        "rector": "vendor/bin/rector src/",
         "phpunit": "php bin/phpunit",
         "phpcsfixer": "vendor/bin/php-cs-fixer",
         "test": "@phpunit",
         "lint": ["@phpstan", "@symfony:lint"],
+        "lint:fix": "@rector",
         "format": "vendor/bin/php-cs-fixer fix --dry-run --verbose",
         "format:fix": "vendor/bin/php-cs-fixer fix --verbose"
     },
