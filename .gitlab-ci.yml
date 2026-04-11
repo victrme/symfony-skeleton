@@ -9,6 +9,13 @@ workflow:
 php:
     stage: check
     image: php:8.4-cli
+    services:
+        - name: mariadb:12.3.1
+          alias: mariadb
+    variables:
+        MARIADB_ROOT_PASSWORD: root
+        MARIADB_DATABASE: db_symfony_test
+        DATABASE_URL: mysql://root:root@mariadb:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
     before_script:
         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
         - composer install --no-interaction --prefer-dist
@@ -21,6 +28,7 @@ php:
     script:
         - composer run lint
         - composer run format
+        - composer run test
 
 node:
     stage: check
@@ -37,3 +45,4 @@ node:
     script:
         - pnpm run lint
         - pnpm run format
+        - pnpm run test

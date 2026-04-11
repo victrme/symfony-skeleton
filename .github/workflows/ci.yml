@@ -12,6 +12,15 @@ jobs:
     php:
         name: PHP
         runs-on: ubuntu-latest
+        services:
+            mariadb:
+                image: mariadb:12.3.1
+                env:
+                    MARIADB_ROOT_PASSWORD: root
+                    MARIADB_DATABASE: db_symfony_test
+                ports:
+                    - 3306:3306
+                options: --health-cmd="healthcheck.sh --connect --innodb_initialized" --health-interval=10s --health-timeout=5s --health-retries=5
         steps:
             -   uses: actions/checkout@v5
 
@@ -35,6 +44,11 @@ jobs:
 
             -   name: Format
                 run: composer run format
+
+            -   name: Test
+                run: composer run test
+                env:
+                    DATABASE_URL: mysql://root:root@127.0.0.1:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
 
     node:
         name: Node
@@ -64,3 +78,6 @@ jobs:
 
             -   name: Format
                 run: pnpm run format
+
+            -   name: Test
+                run: pnpm run test
