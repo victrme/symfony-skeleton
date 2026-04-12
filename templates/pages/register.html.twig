@@ -1,7 +1,9 @@
-{% trans_default_domain "auth" %}
+{% trans_default_domain 'auth' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'register.title' | trans }}{% endblock %}
+{% block title %}
+    {{ 'register.title' | trans }}
+{% endblock %}
 
 {% block body %}
     <h1>{{ 'register.title' | trans }}</h1>
@@ -10,11 +12,10 @@
     {{ form_errors(form) }}
 
     {{ form_row(form.email) }}
-    {{ form_row(form.plainPassword, {label: 'Password'}) }}
+    {{ form_row(form.plainPassword, { label: 'Password' }) }}
     {{ form_row(form.agreeTerms) }}
 
-    <button type="submit" class="btn">
-        <span>{{ 'register.label.submit' | trans }}</span>
-    </button>
+    <button type="submit" class="btn"><span>{{ 'register.label.submit' | trans }}</span></button>
+
     {{ form_end(form) }}
 {% endblock %}

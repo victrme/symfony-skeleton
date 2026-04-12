@@ -1,36 +1,31 @@
-{% trans_default_domain "auth" %}
+{% trans_default_domain 'auth' %}
 {% extends 'base.html.twig' %}
 
-{% block title %}{{ 'login.page' | trans }}{% endblock %}
+{% block title %}
+    {{ 'login.page' | trans }}
+{% endblock %}
 
 {% block body %}
     <form method="post">
         {% if error %}
             <div class="alert alert-danger">
-                {{ error.messageKey|trans(error.messageData, 'security') }}
+                {{ error.messageKey | trans(error.messageData, 'security') }}
             </div>
         {% endif %}
 
         {% if app.user %}
             <div class="mb-3">
-                <span>{{ 'login.authed' | trans }} </span>
-                <span>{{ app.user.userIdentifier }}, </span>
-                <a href="{{ logout_path() }}">
-                    <span>{{ 'login.logout' | trans }}</span>
-                </a>
+                <span>{{ 'login.authed' | trans }}</span>
+                <span>{{ app.user.userIdentifier }},</span>
+                <a href="{{ logout_path() }}"><span>{{ 'login.logout' | trans }}</span></a>
             </div>
         {% endif %}
 
-        <h1 class="text-xl p-4">
-            {{ 'login.title' | trans }}
-        </h1>
+        <h1 class="text-xl p-4">{{ 'login.title' | trans }}</h1>
 
         <fieldset class="fieldset bg-base-200 rounded-box w-xs p-4">
-
             <div class="my-1">
-                <label for="username">
-                    {{ 'login.label.email' | trans }}
-                </label>
+                <label for="username">{{ 'login.label.email' | trans }}</label>
                 <input
                     class="input"
                     type="email"
@@ -41,13 +36,11 @@
                     placeholder="mail@example.com"
                     required
                     autofocus
-                >
+                />
             </div>
 
             <div class="my-1">
-                <label for="password">
-                    {{ 'login.label.password' | trans }}
-                </label>
+                <label for="password">{{ 'login.label.password' | trans }}</label>
                 <input
                     class="input"
                     type="password"
@@ -56,19 +49,12 @@
                     placeholder="..."
                     autocomplete="current-password"
                     required
-                >
+                />
             </div>
 
             <div class="my-1">
-                <input
-                    class="checkbox"
-                    type="checkbox"
-                    name="_remember_me"
-                    id="_remember_me"
-                >
-                <label for="_remember_me">
-                    {{ 'login.label.remember' | trans }}
-                </label>
+                <input class="checkbox" type="checkbox" name="_remember_me" id="_remember_me" />
+                <label for="_remember_me">{{ 'login.label.remember' | trans }}</label>
             </div>
 
             <input
@@ -76,12 +62,9 @@
                 name="_csrf_token"
                 data-controller="csrf-protection"
                 value="{{ csrf_token('authenticate') }}"
-            >
+            />
 
-            <button class="btn btn-md btn-primary" type="submit">
-                {{ 'login.label.submit' | trans }}
-            </button>
+            <button class="btn btn-md btn-primary" type="submit">{{ 'login.label.submit' | trans }}</button>
         </fieldset>
-
     </form>
 {% endblock %}
