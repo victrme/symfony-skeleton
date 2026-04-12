@@ -1,8 +1,19 @@
+import { createApp } from 'vue'
+import HelloVue from './components/HelloVue.vue'
+
 globalThis.window.addEventListener('DOMContentLoaded', () => {
     buttonCounter()
     toggleCheckboxes()
     updateVerify()
 })
+
+export function mountHelloVue() {
+    const container = document.querySelector('[data-vue="hello"]')
+
+    if (container) {
+        createApp(HelloVue).mount(container)
+    }
+}
 
 export function buttonCounter() {
     const btn = document.querySelector<HTMLButtonElement>('[data-hello-btn]')
