@@ -16,6 +16,7 @@ services:
             - "5173:5173"
         volumes:
             - ./:/var/www/html
+            - pnpm-store:/root/.local/share/pnpm/store
 
     #
     # Development
@@ -40,7 +41,7 @@ services:
             - "8443:443"
             - "8443:443/udp"
         volumes:
-            - ./Caddyfile:/etc/caddy/Caddyfile
+            - ./docker/Caddyfile:/etc/caddy/Caddyfile
             - .:/var/www/html
         depends_on:
             - php
@@ -65,5 +66,6 @@ services:
 
 volumes:
     db:
+    pnpm-store:
     caddy_data:
     caddy_config:

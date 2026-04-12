@@ -34,6 +34,8 @@ WORKDIR /var/www/html
 
 USER root
 
-RUN npm install --global pnpm
+RUN npm install --global pnpm && \
+    mkdir -p /home/node/.local/share/pnpm/store && \
+    chown -R node:node /home/node/.local
 
 USER node

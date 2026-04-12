@@ -1,8 +1,10 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.4.10/schema.json",
+    "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
     "formatter": {
         "enabled": true,
-        "useEditorconfig": true
+        "indentStyle": "space",
+        "indentWidth": 4,
+        "lineWidth": 144
     },
     "linter": {
         "enabled": true,
@@ -22,15 +24,11 @@
             "tailwindDirectives": true
         }
     },
+    "html": {
+        "experimentalFullSupportEnabled": true
+    },
     "files": {
-        "includes": [
-            "**",
-            "!var",
-            "!vendor",
-            "!public",
-            "!.pnpm-store",
-            "!node_modules"
-        ],
+        "includes": ["**", "!var", "!vendor", "!public", "!node_modules"],
         "ignoreUnknown": true
     }
 }

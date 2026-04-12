@@ -54,6 +54,10 @@ check:
 	@docker compose exec node pnpm run lint
 	@docker compose exec node pnpm run format
 
+fix:
+	@docker compose exec php composer run lint:fix
+	@docker compose exec node pnpm run lint:fix
+
 test:
 	@docker compose exec php composer run test
 	@docker compose exec node pnpm test
