@@ -16,7 +16,7 @@ services:
             - "5173:5173"
         volumes:
             - ./:/var/www/html
-            - pnpm-store:/root/.local/share/pnpm/store
+            - ~/.local/share/pnpm/store:/home/node/.local/share/pnpm/store
 
     #
     # Development
@@ -66,6 +66,5 @@ services:
 
 volumes:
     db:
-    pnpm-store:
     caddy_data:
     caddy_config:

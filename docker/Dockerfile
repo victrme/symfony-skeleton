@@ -39,3 +39,8 @@ RUN npm install --global pnpm && \
     chown -R node:node /home/node/.local
 
 USER node
+
+# Virtual dependency store on Linux
+# Documentation: https://pnpm.io/fr/settings#storedir
+
+RUN pnpm config set store-dir /home/node/.local/share/pnpm/store
