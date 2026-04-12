@@ -9,8 +9,4 @@ localhost {
        file_server @static
        reverse_proxy node:5173
    }
-
-    request_body {
-         max_size 20MB
-     }
 }
