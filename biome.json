@@ -1,10 +1,12 @@
 {
     "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
     "formatter": {
-        "enabled": true,
-        "indentStyle": "space",
-        "indentWidth": 4,
-        "lineWidth": 144
+        "enabled": false
+    },
+    "assist": {
+        "actions": {
+            "recommended": true
+        }
     },
     "linter": {
         "enabled": true,
@@ -12,20 +14,10 @@
             "recommended": true
         }
     },
-    "javascript": {
-        "formatter": {
-            "semicolons": "asNeeded",
-            "quoteStyle": "single",
-            "trailingCommas": "none"
-        }
-    },
     "css": {
         "parser": {
             "tailwindDirectives": true
         }
-    },
-    "html": {
-        "experimentalFullSupportEnabled": true
     },
     "files": {
         "includes": ["**", "!var", "!vendor", "!public", "!node_modules"],
