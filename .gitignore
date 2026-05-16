@@ -12,11 +12,6 @@
 /var/
 /vendor/
 ###< symfony/framework-bundle ###
-
-###> phpunit/phpunit ###
-/.phpunit.cache/
-###< phpunit/phpunit ###
-
 ###> symfony/asset-mapper ###
 /public/assets/
 /assets/vendor/
@@ -26,3 +21,8 @@
 /node_modules/
 /public/build/
 ###< pentatrion/vite-bundle ###
+
+###> phpunit/phpunit ###
+/phpunit.xml
+/.phpunit.cache/
+###< phpunit/phpunit ###

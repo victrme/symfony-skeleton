@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 use App\Fixtures\AppFixtures;
 use App\Repository\UserRepository;
 use Symfony\Bundle\FrameworkBundle\Test\KernelTestCase;
