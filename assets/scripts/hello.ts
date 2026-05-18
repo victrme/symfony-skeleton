@@ -1,5 +1,5 @@
-import { createApp } from 'vue'
-import HelloVue from './components/HelloVue.vue'
+// import { createApp } from 'vue'
+// import HelloVue from './components/HelloVue.vue'
 
 globalThis.window.addEventListener('DOMContentLoaded', () => {
     buttonCounter()
@@ -7,13 +7,13 @@ globalThis.window.addEventListener('DOMContentLoaded', () => {
     updateVerify()
 })
 
-export function mountHelloVue() {
-    const container = document.querySelector('[data-vue="hello"]')
+// export function mountHelloVue() {
+//     const container = document.querySelector('[data-vue="hello"]')
 
-    if (container) {
-        createApp(HelloVue).mount(container)
-    }
-}
+//     if (container) {
+//         createApp(HelloVue).mount(container)
+//     }
+// }
 
 export function buttonCounter() {
     const btn = document.querySelector<HTMLButtonElement>('[data-hello-btn]')

@@ -32,7 +32,7 @@ USER $user
 # Node
 #
 
-FROM node:25.8.2 AS node
+FROM node:26.1.0-alpine AS node
 
 WORKDIR /var/www/html
 

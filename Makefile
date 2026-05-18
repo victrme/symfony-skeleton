@@ -27,7 +27,7 @@ php:
 	@docker compose exec -it php bash
 
 node:
-	@docker compose exec -it node bash
+	@docker compose exec -it node sh
 
 #
 # Tools
