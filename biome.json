@@ -1,5 +1,4 @@
 {
-    "$schema": "https://biomejs.dev/schemas/2.4.11/schema.json",
     "formatter": {
         "enabled": false
     },
@@ -14,6 +13,9 @@
             "recommended": true
         }
     },
+    "html": {
+        "experimentalFullSupportEnabled": true
+    },
     "css": {
         "parser": {
             "tailwindDirectives": true
@@ -22,5 +24,6 @@
     "files": {
         "includes": ["**", "!var", "!vendor", "!public", "!node_modules"],
         "ignoreUnknown": true
-    }
+    },
+    "$schema": "https://biomejs.dev/schemas/2.4.14/schema.json"
 }

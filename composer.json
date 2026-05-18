@@ -1,8 +1,38 @@
 {
     "type": "project",
-    "license": "proprietary",
     "minimum-stability": "stable",
     "prefer-stable": true,
+    "scripts": {
+        "auto-scripts": {
+            "cache:clear": "symfony-cmd",
+            "assets:install %PUBLIC_DIR%": "symfony-cmd"
+        },
+        "post-install-cmd": [
+            "@auto-scripts"
+        ],
+        "post-update-cmd": [
+            "@auto-scripts"
+        ],
+        "test": [
+            "vendor/bin/pest"
+        ],
+        "lint": [
+            "vendor/bin/rector src/ --dry-run",
+            "php bin/console lint:yaml config/",
+            "php bin/console lint:container",
+            "php bin/console lint:twig templates/",
+            "php bin/console lint:translations --locale=en --locale=fr"
+        ],
+        "format": [
+            "vendor/bin/php-cs-fixer fix --verbose --dry-run"
+        ],
+        "lint:fix": [
+            "vendor/bin/rector src/"
+        ],
+        "format:fix": [
+            "vendor/bin/php-cs-fixer fix --verbose"
+        ]
+    },
     "require": {
         "php": ">=8.4.19",
         "ext-ctype": "*",
@@ -55,29 +85,6 @@
         "symfony/stopwatch": "7.4.*",
         "symfony/web-profiler-bundle": "7.4.*",
         "zenstruck/foundry": "^2.9.2"
-    },
-    "scripts": {
-        "auto-scripts": {
-            "cache:clear": "symfony-cmd",
-            "assets:install %PUBLIC_DIR%": "symfony-cmd"
-        },
-        "post-install-cmd": ["@auto-scripts"],
-        "post-update-cmd": ["@auto-scripts"],
-        "symfony:lint": [
-            "php bin/console lint:yaml config/",
-            "php bin/console lint:container",
-            "php bin/console lint:twig templates/",
-            "php bin/console lint:translations --locale=en --locale=fr"
-        ],
-        "phpstan": "vendor/bin/phpstan",
-        "rector": "vendor/bin/rector src/",
-        "phpunit": "php bin/phpunit",
-        "phpcsfixer": "vendor/bin/php-cs-fixer",
-        "test": "@phpunit",
-        "lint": ["@phpstan", "@symfony:lint"],
-        "lint:fix": "@rector",
-        "format": "vendor/bin/php-cs-fixer fix --dry-run --verbose",
-        "format:fix": "vendor/bin/php-cs-fixer fix --verbose"
     },
     "config": {
         "allow-plugins": {
