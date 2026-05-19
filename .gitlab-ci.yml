@@ -1,12 +1,42 @@
 stages:
     - check
 
-workflow:
+.php_rules: &php_rules
     rules:
         - if: $CI_COMMIT_BRANCH == "main"
+          changes:
+              - "docker/**/*"
+              - "tests/**/*"
+              - "translations/**/*"
+              - "templates/**/*"
+              - "config/**/*"
+              - "src/**/*"
+              - "*.json"
         - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - "docker/**/*"
+              - "tests/**/*"
+              - "translations/**/*"
+              - "templates/**/*"
+              - "config/**/*"
+              - "src/**/*"
+              - "*.json"
+
+.node_rules: &node_rules
+    rules:
+        - if: $CI_COMMIT_BRANCH == "main"
+          changes:
+              - "docker/**/*"
+              - "tests/**/*"
+              - "*.json"
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+          changes:
+              - "docker/**/*"
+              - "tests/**/*"
+              - "*.json"
 
 php:
+    <<: *php_rules
     stage: check
     image: php:8.4-cli
     services:
@@ -18,6 +48,7 @@ php:
         DATABASE_URL: mysql://root:root@mariadb:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
     before_script:
         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        - curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
         - composer install --no-interaction --prefer-dist
     cache:
         key:
@@ -26,11 +57,12 @@ php:
         paths:
             - vendor/
     script:
+        - symfony check:requirements
         - composer run lint
-        - composer run format
         - composer run test
 
 node:
+    <<: *node_rules
     stage: check
     image: node:25.8.2
     before_script:
@@ -43,6 +75,6 @@ node:
         paths:
             - node_modules/
     script:
+        - pnpm run build
         - pnpm run lint
-        - pnpm run format
         - pnpm run test
