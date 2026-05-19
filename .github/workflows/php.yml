@@ -4,6 +4,14 @@ on:
     push:
         branches:
             - main
+        paths:
+            - "docker/**"
+            - "tests/**"
+            - "translations/**"
+            - "templates/**"
+            - "config/**"
+            - "src/**"
+            - "*.json"
     pull_request:
         branches:
             - main
@@ -42,42 +50,7 @@ jobs:
             - name: Lint
               run: composer run lint
 
-            - name: Format
-              run: composer run format
-
             - name: Test
               run: composer run test
               env:
                   DATABASE_URL: mysql://root:root@127.0.0.1:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
-
-    node:
-        name: Node
-        runs-on: ubuntu-latest
-        steps:
-            - uses: actions/checkout@v5
-
-            - name: Setup pnpm
-              uses: pnpm/action-setup@v5
-              with:
-                  version: "10.6.5"
-
-            - name: Setup Node
-              uses: actions/setup-node@v6
-              with:
-                  node-version: "25.8.2"
-                  cache: pnpm
-
-            - name: Install
-              run: pnpm install --frozen-lockfile
-
-            - name: Build
-              run: pnpm run build
-
-            - name: Lint
-              run: pnpm run lint
-
-            - name: Format
-              run: pnpm run format
-
-            - name: Test
-              run: pnpm run test

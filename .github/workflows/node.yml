@@ -1,0 +1,43 @@
+name: CI
+
+on:
+    push:
+        branches:
+            - main
+        paths:
+            - "docker/**"
+            - "tests/**"
+            - "*.json"
+    pull_request:
+        branches:
+            - main
+
+jobs:
+    node:
+        name: Node
+        runs-on: ubuntu-latest
+        steps:
+            - uses: actions/checkout@v5
+
+            - name: Setup pnpm
+              uses: pnpm/action-setup@v5
+              with:
+                  version: "10.6.5"
+
+            - name: Setup Node
+              uses: actions/setup-node@v6
+              with:
+                  node-version: "26"
+                  cache: pnpm
+
+            - name: Install
+              run: pnpm install --frozen-lockfile
+
+            - name: Build
+              run: pnpm run build
+
+            - name: Lint
+              run: pnpm run lint
+
+            - name: Test
+              run: pnpm run test
