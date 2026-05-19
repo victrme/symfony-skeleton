@@ -22,21 +22,21 @@ Added from `symfony new`:
 Here is the full stack:
 
 | Layer            | Tool                             |
-|------------------|----------------------------------|
-| PHP runtime      | PHP 8.4-FPM                      |                               
-| Database         | MariaDB                          |                               
+| ---------------- | -------------------------------- |
+| PHP runtime      | PHP 8.4-FPM                      |
+| Database         | MariaDB                          |
 | Web server       | Caddy                            |
 | Package manager  | pnpm                             |
 | Frontend bundler | Vite 8                           |
-| CSS              | Tailwind v4 + DaisyUI            |                               
-| TS Linter        | Biome                            |                               
-| Testing (TS)     | Vitest                           |                               
-| Testing (PHP)    | PHPUnit                          |                               
-| Admin dashboard  | EasyAdmin 5                      |                               
-| Fixtures         | Foundry + DoctrineFixturesBundle |                               
-| Static analysis  | PHPStan                          |                               
-| PHP formatter    | php-cs-fixer                     |                               
-| Mail development | Mailpit                          |                               
+| CSS              | Tailwind v4 + DaisyUI            |
+| TS Linter        | Biome                            |
+| Testing (TS)     | Vitest                           |
+| Testing (PHP)    | PHPUnit                          |
+| Admin dashboard  | EasyAdmin 5                      |
+| Fixtures         | Foundry + DoctrineFixturesBundle |
+| Static analysis  | PHPStan                          |
+| PHP formatter    | php-cs-fixer                     |
+| Mail development | Mailpit                          |
 
 ## Quick Start
 
@@ -61,7 +61,7 @@ Once this is done, go to:
 ## Commands
 
 | Command                | Description                          |
-|------------------------|--------------------------------------|
+| ---------------------- | ------------------------------------ |
 | Docker                 |                                      |
 | `make init`            | Build, install dependencies, etc     |
 | `make up`              | Start containers                     |
@@ -139,6 +139,18 @@ The controller directory is the source of truth.
 - app_hello_mail
 ```
 
+### DOM Targeting
+
+When selecting DOM elements in TypeScript files, always use `data-*` attributes. Never use CSS classes for JS/DOM hooks.
+
+```html
+<input type="checkbox" data-hello-check="fixtures" />
+```
+
+```ts
+document.querySelector<HTMLInputElement>('[data-hello-check]')
+```
+
 ### Templates
 
 Templates follow the Astro-style layout convention:
@@ -154,7 +166,7 @@ templates/
 Long .html.twig files can be split with smaller sections:
 
 - Entry file and folder has the same name.
-- Starting with a _underscore.
+- Starting with a \_underscore.
 - Always in the same folder.
 
 ```
