@@ -38,7 +38,7 @@ stages:
 php:
     <<: *php_rules
     stage: check
-    image: php:8.4-cli
+    image: php:8.5-cli
     services:
         - name: mariadb
           alias: mariadb
@@ -64,7 +64,7 @@ php:
 node:
     <<: *node_rules
     stage: check
-    image: node:25.8.2
+    image: node:26
     before_script:
         - npm install -g pnpm@10.6.5
         - pnpm install --frozen-lockfile
