@@ -235,4 +235,4 @@ array_splice($tokens, $i, 4, [
 ### Docker Images
 
 - Dev services (`db`, `caddy`, `phpmyadmin`, `mailpit`) use `latest` images.
-- Production services (`php`, `node`) are pinned to specific versions in `docker/prod/Dockerfile`.
+- Production services are pinned to specific versions in `docker/Dockerfile` (`php-prod`, `node-build`, and `composer-build` targets).

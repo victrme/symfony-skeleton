@@ -1,0 +1,11 @@
+services:
+    php:
+        build:
+            dockerfile: docker/Dockerfile
+            target: php-prod
+        volumes:
+            - ./:/var/www/html
+
+volumes:
+    node_modules:
+    pnpm-store:

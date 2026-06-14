@@ -14,6 +14,9 @@ init:
 up:
 	@docker compose up -d
 
+up-prod:
+	@docker compose -f compose.prod.yaml up -d
+
 down:
 	@docker compose down -t 0
 

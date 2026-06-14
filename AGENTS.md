@@ -62,6 +62,8 @@ pnpm lint / lint:fix / format / format:fix  # Biome
 
 ## Docker
 
-- Dev: `docker/Dockerfile` (multi-stage: `php` and `node` targets)
-- Prod: `docker/prod/Dockerfile` (node-build → composer-build → php, with warmup)
+- `docker/Dockerfile` — multi-stage: `php-base` / `php-dev` / `php-prod`, `node-base` / `node-dev` / `node-build`, `composer-build`
+- `compose.prod.yaml` builds `php-prod` and `node-dev` targets from `docker/Dockerfile`
+- `compose.yaml` overrides the `php` service to use the `php-dev` target
+- Production image: build the `php-prod` target (uses `node-build` and `composer-build` internally, with cache warmup)
 - Dev services: MariaDB, Caddy, phpMyAdmin, Mailpit in `compose.yaml` for dev
