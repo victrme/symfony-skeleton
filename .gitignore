@@ -1,5 +1,7 @@
 .idea
+.zed
 .vscode
+.kilo
 .claude
 .pnpm-store
 
