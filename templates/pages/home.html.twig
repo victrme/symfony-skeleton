@@ -1,9 +1,9 @@
-{% trans_default_domain 'hello' %}
 {% extends 'base.html.twig' %}
 
-{% block head_description %}
+{% block meta_description %}
     {{ 'head.description' | trans }}
 {% endblock %}
+
 {% block title %}
     {{ 'title' | trans }} - Symfony Skeleton
 {% endblock %}

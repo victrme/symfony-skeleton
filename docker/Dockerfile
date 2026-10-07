@@ -13,8 +13,7 @@ RUN --mount=type=cache,target=/var/cache/apt apt-get update && \
     apt-get install -y --no-install-recommends git unzip && \
     rm -rf /var/lib/apt/lists/*
 
-RUN install-php-extensions intl pdo_mysql zip xdebug apcu && \
-    echo "apc.enable_cli=1" > /usr/local/etc/php/conf.d/apcu-cli.ini
+RUN install-php-extensions intl pdo_mysql zip xdebug apcu
 
 RUN groupadd -g $uid $user && \
     useradd -u $uid -g $user -m -G www-data -d /home/$user $user
@@ -24,18 +23,11 @@ WORKDIR /var/www/html
 
 ## Base Node
 
-FROM node:26-alpine AS node-base
+FROM node:26-slim AS node-base
 
 WORKDIR /var/www/html
 
-USER root
-RUN npm install --global pnpm && \
-    mkdir -p /home/node/.local/share/pnpm/store && \
-    chown -R node:node /home/node/.local /var/www/html
-
-USER node
-RUN pnpm config set store-dir /home/node/.local/share/pnpm/store
-
+RUN npm i -g pnpm
 
 ## Development PHP
 

@@ -3,28 +3,25 @@
 import tailwindcss from '@tailwindcss/vite'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import symfonyPlugin from 'vite-plugin-symfony'
+import Symfony from '@symfony/reprise/vite'
 
 export default defineConfig({
     plugins: [
         vue(),
         tailwindcss(),
-        symfonyPlugin({
-            viteDevServerHostname: 'localhost'
-        })
+        Symfony(),
     ],
     build: {
+        outDir: 'public/build',
+        emptyOutDir: true,
         rolldownOptions: {
             input: {
-                app: './assets/index.ts'
-            }
-        }
-    },
-    server: {
-        host: '0.0.0.0'
+                app: './assets/index.ts',
+            },
+        },
     },
     test: {
         environment: 'happy-dom',
-        include: ['tests/**/*.test.ts']
-    }
+        include: ['tests/**/*.test.ts'],
+    },
 })

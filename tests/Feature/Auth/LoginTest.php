@@ -16,7 +16,7 @@ beforeEach(function () {
     $this->client = static::createClient();
 
     $translator = static::getContainer()->get(TranslatorInterface::class);
-    $this->submitText = $translator->trans('login.label.submit', domain: 'auth');
+    $this->submitText = $translator->trans('login.label.submit');
 
     UserFactory::createOne([
         'email' => AppFixtures::ADMIN_EMAIL,

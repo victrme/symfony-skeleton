@@ -19,8 +19,8 @@ beforeEach(function () {
     $this->userRepository = $container->get(UserRepository::class);
 
     $translator = $container->get(TranslatorInterface::class);
-    $this->submitText = $translator->trans('register.label.submit', domain: 'auth');
-    $this->titleText = $translator->trans('register.title', domain: 'auth');
+    $this->submitText = $translator->trans('register.label.submit');
+    $this->titleText = $translator->trans('register.title');
 
     UserFactory::createOne([
         'email' => AppFixtures::ADMIN_EMAIL,

@@ -22,7 +22,6 @@ class DashboardController extends AbstractDashboardController
     {
         return Dashboard::new()
             ->setTitle('Admin hello world !')
-            ->setTranslationDomain('admin')
         ;
     }
 

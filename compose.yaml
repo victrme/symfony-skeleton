@@ -16,8 +16,6 @@ services:
             - "5173:5173"
         volumes:
             - ./:/var/www/html
-            - node_modules:/var/www/html/node_modules
-            - pnpm-store:/home/node/.local/share/pnpm/store
 
     db:
         image: mariadb
@@ -31,7 +29,6 @@ services:
 
     caddy:
         image: caddy
-        restart: unless-stopped
         cap_add:
             - NET_ADMIN
         ports:
@@ -45,7 +42,6 @@ services:
 
     phpmyadmin:
         image: phpmyadmin
-        restart: always
         ports:
             - "8080:80"
         environment:
