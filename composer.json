@@ -7,15 +7,9 @@
             "cache:clear": "symfony-cmd",
             "assets:install %PUBLIC_DIR%": "symfony-cmd"
         },
-        "post-install-cmd": [
-            "@auto-scripts"
-        ],
-        "post-update-cmd": [
-            "@auto-scripts"
-        ],
-        "test": [
-            "vendor/bin/pest"
-        ],
+        "post-install-cmd": "@auto-scripts",
+        "post-update-cmd": "@auto-scripts",
+        "test": "vendor/bin/pest",
         "lint": [
             "vendor/bin/rector src/ --dry-run",
             "php bin/console lint:yaml config/",
@@ -23,31 +17,25 @@
             "php bin/console lint:twig templates/",
             "php bin/console lint:translations --locale=en --locale=fr"
         ],
-        "format": [
-            "vendor/bin/php-cs-fixer fix --verbose --dry-run"
-        ],
-        "lint:fix": [
-            "vendor/bin/rector src/"
-        ],
-        "format:fix": [
-            "vendor/bin/php-cs-fixer fix --verbose"
-        ]
+        "format": "vendor/bin/php-cs-fixer fix --verbose --dry-run",
+        "lint:fix": "vendor/bin/rector src/",
+        "format:fix":  "vendor/bin/php-cs-fixer fix --verbose"
     },
     "require": {
-        "php": ">=8.4.19",
+        "php": ">=8.5",
         "ext-ctype": "*",
         "ext-iconv": "*",
-        "doctrine/doctrine-bundle": "^2.18.2",
-        "doctrine/doctrine-migrations-bundle": "^3.7",
-        "doctrine/orm": "^3.6.3",
-        "easycorp/easyadmin-bundle": "^5.0.4",
+        "doctrine/doctrine-bundle": "^2.19.1",
+        "doctrine/doctrine-migrations-bundle": "^3.7.1",
+        "doctrine/orm": "^3.7.4",
+        "easycorp/easyadmin-bundle": "^5.6.1",
         "phpdocumentor/reflection-docblock": "^6.0.3",
-        "phpstan/phpdoc-parser": "^2.3.2",
+        "phpstan/phpdoc-parser": "^2.3.6",
         "symfony/asset": "7.4.*",
         "symfony/console": "7.4.*",
         "symfony/dotenv": "7.4.*",
         "symfony/expression-language": "7.4.*",
-        "symfony/flex": "^2.10",
+        "symfony/flex": "^2.11",
         "symfony/form": "7.4.*",
         "symfony/framework-bundle": "7.4.*",
         "symfony/http-client": "7.4.*",
@@ -66,25 +54,25 @@
         "symfony/twig-bundle": "7.4.*",
         "symfony/validator": "7.4.*",
         "symfony/yaml": "7.4.*",
-        "twig/extra-bundle": "^3.24",
-        "twig/twig": "^3.24"
+        "twig/extra-bundle": "^3.29",
+        "twig/twig": "^3.30"
     },
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.3.1",
-        "friendsofphp/php-cs-fixer": "^3.94.2",
-        "pestphp/pest": "^4.6",
+        "friendsofphp/php-cs-fixer": "^3.95.27",
+        "pestphp/pest": "^4.7.8",
         "pestphp/pest-plugin-drift": "^4.1",
-        "phpstan/phpstan": "^2.1.46",
-        "phpstan/phpstan-doctrine": "^2.0",
-        "phpstan/phpstan-symfony": "^2.0.15",
-        "rector/rector": "^2.4",
+        "phpstan/phpstan": "^2.3.0",
+        "phpstan/phpstan-doctrine": "^2.0.28",
+        "phpstan/phpstan-symfony": "^2.1.0",
+        "rector/rector": "^2.7",
         "symfony/browser-kit": "7.4.*",
         "symfony/css-selector": "7.4.*",
         "symfony/debug-bundle": "7.4.*",
-        "symfony/maker-bundle": "^1.67",
+        "symfony/maker-bundle": "^1.68",
         "symfony/stopwatch": "7.4.*",
         "symfony/web-profiler-bundle": "7.4.*",
-        "zenstruck/foundry": "^2.9.2"
+        "zenstruck/foundry": "^2.13.0"
     },
     "config": {
         "allow-plugins": {
