@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 namespace App\Fixtures;
 
-use App\Fixtures\Factory\MessageFactory;
-use App\Fixtures\Factory\UserFactory;
+use App\Factory\MessageFactory;
+use App\Factory\UserFactory;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
 
@@ -15,10 +15,7 @@ class AppFixtures extends Fixture
 
     public function load(ObjectManager $manager): void
     {
-        UserFactory::createOne()
-            ->setEmail(self::ADMIN_EMAIL)
-            ->setRoles(['ROLE_ADMIN']);
-
+        UserFactory::createOne()->setEmail(self::ADMIN_EMAIL)->setRoles(['ROLE_ADMIN']);
         UserFactory::createMany(20);
         MessageFactory::createMany(100);
 

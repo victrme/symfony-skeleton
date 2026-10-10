@@ -12,7 +12,9 @@ use Symfony\Component\Routing\Attribute\Route;
 
 final class MailController extends AbstractController
 {
-    public function __construct(private readonly MailerService $mailerService) {}
+    public function __construct(
+        private readonly MailerService $mailerService
+    ) {}
 
     /**
      * @throws TransportExceptionInterface
@@ -21,7 +23,6 @@ final class MailController extends AbstractController
     public function __invoke(): Response
     {
         $this->mailerService->send('Hello World !', 'This email has been correctly sent !');
-
         return $this->redirectToRoute('app_home');
     }
 }

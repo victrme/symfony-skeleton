@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Fixtures\Factory;
+namespace App\Factory;
 
 use App\Entity\Message;
 use Zenstruck\Foundry\Persistence\PersistentObjectFactory;

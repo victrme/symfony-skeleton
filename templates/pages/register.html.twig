@@ -14,7 +14,11 @@
     {{ form_row(form.plainPassword, { label: 'Password' }) }}
     {{ form_row(form.agreeTerms) }}
 
-    <button type="submit" class="btn"><span>{{ 'register.label.submit' | trans }}</span></button>
+    <button type="submit" class="btn">
+        <span>
+            {{ 'register.label.submit' | trans }}
+        </span>
+    </button>
 
     {{ form_end(form) }}
 {% endblock %}

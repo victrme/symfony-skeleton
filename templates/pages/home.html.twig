@@ -10,7 +10,11 @@
 
 {% block body %}
     <div class="py-8 mt-8 text-center">
-        <h1 class="text-4xl font-bold pb-2"><span>{{ 'title' | trans }}</span></h1>
+        <h1 class="text-4xl font-bold pb-2">
+            <span>
+                {{ 'title' | trans }}
+            </span>
+        </h1>
 
         <p>
             {{ 'subtitle' | trans }}
@@ -35,7 +39,9 @@
                 <span>{{ 'scripts.label' | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
-                <button class="btn btn-sm btn-accent" data-hello-btn="">Never clicked</button>
+                <button class="btn btn-sm btn-accent" data-hello-btn="">
+                    Never clicked
+                </button>
             </p>
         </li>
         <li class="list-row">
@@ -87,11 +93,17 @@
             <p class="list-col-grow text-end">
                 {% if app.user %}
                     <span>{{ app.user.email }} -</span>
-                    <a class="link link-primary" href="{{ path('app_logout') }}">{{ 'auth.logout' | trans }}</a>
+                    <a class="link link-primary" href="{{ path('app_logout') }}">
+                        {{ 'auth.logout' | trans }}
+                    </a>
                 {% else %}
-                    <a class="link link-primary" href="{{ path('app_login') }}">{{ 'auth.login' | trans }}</a>
+                    <a class="link link-primary" href="{{ path('app_login') }}">
+                        {{ 'auth.login' | trans }}
+                    </a>
                     or
-                    <a class="link link-primary" href="{{ path('app_register') }}">{{ 'auth.signup' | trans }}</a>
+                    <a class="link link-primary" href="{{ path('app_register') }}">
+                        {{ 'auth.signup' | trans }}
+                    </a>
                 {% endif %}
             </p>
         </li>
@@ -101,7 +113,9 @@
                 <span>{{ 'admin.label' | trans }}</span>
             </label>
             <p class="list-col-grow text-end">
-                <a class="link link-primary" href="{{ path('admin') }}">{{ 'admin.link' | trans }}</a>
+                <a class="link link-primary" href="{{ path('admin') }}">
+                    {{ 'admin.link' | trans }}
+                </a>
             </p>
         </li>
         <li class="list-row">
@@ -116,7 +130,9 @@
                 </a>
 
                 <span class="ms-3 me-1">2.</span>
-                <a class="link link-primary" href="{{ path('app_mail') }}"><span>{{ 'email.send' | trans }}</span></a>
+                <a class="link link-primary" href="{{ path('app_mail') }}">
+                    <span>{{ 'email.send' | trans }}</span>
+                </a>
             </p>
         </li>
         <li class="list-row">
@@ -186,7 +202,9 @@
         </p>
 
         <p data-hello-verify-done="true">
-            <span class="badge badge-soft badge-success">{{ 'verify.done' | trans }}</span>
+            <span class="badge badge-soft badge-success">
+                {{ 'verify.done' | trans }}
+            </span>
         </p>
     </div>
 {% endblock %}
