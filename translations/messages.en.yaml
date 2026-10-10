@@ -79,3 +79,4 @@ register:
 menu:
     item:
         users: "Users"
+        messages: "Messages"

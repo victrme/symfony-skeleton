@@ -4,18 +4,15 @@ declare(strict_types=1);
 
 uses(\Symfony\Bundle\FrameworkBundle\Test\WebTestCase::class);
 use App\Fixtures\AppFixtures;
-use \functional\Admin\AdminTest;
 use App\Fixtures\Factory\UserFactory;
 use App\Repository\UserRepository;
-use Symfony\Bundle\FrameworkBundle\KernelBrowser;
 
 uses(\Zenstruck\Foundry\Test\ResetDatabase::class);
-
 uses(\Zenstruck\Foundry\Test\Factories::class);
 
 beforeEach(function () {
-    $this->client = AdminTest::createClient();
-    $container = AdminTest::getContainer();
+    $this->client = self::createClient();
+    $container = self::getContainer();
     $this->userRepository = $container->get(UserRepository::class);
 
     UserFactory::createOne([

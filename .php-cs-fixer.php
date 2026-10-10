@@ -5,7 +5,7 @@ use PhpCsFixer\Finder;
 
 $finder = new Finder()
     ->in(__DIR__)
-    ->exclude('var')
+    ->exclude(['var', 'tests'])
     ->notPath([
         'config/bundles.php',
         'config/reference.php',
