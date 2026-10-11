@@ -2,6 +2,14 @@
 
 declare(strict_types=1);
 
-test('example', function () {
-    expect(true)->toBeTrue();
-});
+namespace App\Tests\Feature;
+
+use PHPUnit\Framework\TestCase;
+
+final class ExampleTest extends TestCase
+{
+    public function testExample(): void
+    {
+        self::assertTrue(true);
+    }
+}

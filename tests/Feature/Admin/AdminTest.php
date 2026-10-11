@@ -2,37 +2,52 @@
 
 declare(strict_types=1);
 
-uses(\Symfony\Bundle\FrameworkBundle\Test\WebTestCase::class);
+namespace App\Tests\Feature\Admin;
+
+use App\Factory\UserFactory;
 use App\Fixtures\AppFixtures;
-use App\Fixtures\Factory\UserFactory;
 use App\Repository\UserRepository;
+use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
+use Zenstruck\Foundry\Test\Factories;
+use Zenstruck\Foundry\Test\ResetDatabase;
 
-uses(\Zenstruck\Foundry\Test\ResetDatabase::class);
-uses(\Zenstruck\Foundry\Test\Factories::class);
+final class AdminTest extends WebTestCase
+{
+    use Factories;
+    use ResetDatabase;
 
-beforeEach(function () {
-    $this->client = self::createClient();
-    $container = self::getContainer();
-    $this->userRepository = $container->get(UserRepository::class);
+    private KernelBrowser $client;
+    private UserRepository $userRepository;
 
-    UserFactory::createOne([
-        'email' => AppFixtures::ADMIN_EMAIL,
-        'password' => '1234',
-        'roles' => ['ROLE_ADMIN'],
-    ]);
-});
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->client = self::createClient();
+        $container = self::getContainer();
+        $this->userRepository = $container->get(UserRepository::class);
 
-test('admin redirects guest', function () {
-    $this->client->request('GET', '/admin');
+        UserFactory::createOne([
+            'email' => AppFixtures::ADMIN_EMAIL,
+            'password' => '1234',
+            'roles' => ['ROLE_ADMIN'],
+        ]);
+    }
 
-    self::assertResponseRedirects('/login');
-});
+    public function testAdminRedirectsGuest(): void
+    {
+        $this->client->request('GET', '/admin');
 
-test('admin accessible by admin', function () {
-    $admin = $this->userRepository->findOneBy(['email' => AppFixtures::ADMIN_EMAIL]);
+        self::assertResponseRedirects('/login');
+    }
 
-    $this->client->loginUser($admin);
-    $this->client->request('GET', '/admin');
+    public function testAdminAccessibleByAdmin(): void
+    {
+        $admin = $this->userRepository->findOneBy(['email' => AppFixtures::ADMIN_EMAIL]);
 
-    self::assertResponseRedirects();
-});
+        $this->client->loginUser($admin);
+        $this->client->request('GET', '/admin');
+
+        self::assertResponseRedirects();
+    }
+}

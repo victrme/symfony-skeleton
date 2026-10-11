@@ -9,7 +9,7 @@
         },
         "post-install-cmd": "@auto-scripts",
         "post-update-cmd": "@auto-scripts",
-        "test": "vendor/bin/pest",
+        "test": "vendor/bin/phpunit",
         "lint": [
             "vendor/bin/rector src/ --dry-run",
             "php bin/console lint:yaml config/",
@@ -60,8 +60,7 @@
     "require-dev": {
         "doctrine/doctrine-fixtures-bundle": "^4.3.1",
         "friendsofphp/php-cs-fixer": "^3.95.27",
-        "pestphp/pest": "^4.7.8",
-        "pestphp/pest-plugin-drift": "^4.1",
+        "phpunit/phpunit": "^12.5.38",
         "phpstan/phpstan": "^2.3.0",
         "phpstan/phpstan-doctrine": "^2.0.28",
         "phpstan/phpstan-symfony": "^2.1.0",
@@ -76,7 +75,6 @@
     },
     "config": {
         "allow-plugins": {
-            "pestphp/pest-plugin": true,
             "php-http/discovery": true,
             "symfony/flex": true,
             "symfony/runtime": true

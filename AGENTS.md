@@ -16,13 +16,13 @@ No local PHP/Node required. Everything runs through Docker containers.
 ## PHP (inside container: `make php` or `docker compose exec php ...`)
 
 ```bash
-composer test           # Pest tests (ran as `vendor/bin/pest`)
+composer test           # PHPUnit tests (ran as `vendor/bin/phpunit`)
 composer lint           # Rector dry-run + symfony lint:yaml/lint:container/lint:twig/lint:translations
 composer format         # php-cs-fixer --dry-run
 composer format:fix     # php-cs-fixer apply
 ```
 
-Single test: `vendor/bin/pest tests/Feature/ExampleTest.php --filter=something`
+Single test: `vendor/bin/phpunit tests/Feature/ExampleTest.php --filter=something`
 
 ## Node (inside container: `make node` or `docker compose exec node ...`)
 
@@ -47,7 +47,7 @@ pnpm lint / lint:fix / format / format:fix  # Biome
 - **Controllers:** `#[Route]` attributes, invokable single-action, `final` classes
 - **Templates:** Astro-style — `pages/` (one per route), `components/` (reusable partials), `layouts/` (sub-layouts). Split long templates into `_underscore` files in same folder
 - **DOM targeting:** `data-*` only, never CSS classes
-- **PHP tests:** Pest in `tests/Feature/` (HTTP tests)` and `tests/unit/php/` (logic). `tests/Pest.php` binds Pest to PHPUnit
+- **PHP tests:** PHPUnit in `tests/Feature/` (HTTP tests) and `tests/unit/php/` (logic)
 - **TS tests:** Vitest in `tests/unit/node/`, happy-dom, imports from `assets/scripts/`
 - **Fixtures:** `src/Fixtures/` via Foundry factories, loaded with `doctrine:fixtures:load`
 - **Formatting:** 4-space indent, 144 max line length, single quotes preferred, no inline comments

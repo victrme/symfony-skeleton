@@ -2,61 +2,75 @@
 
 declare(strict_types=1);
 
-uses(\Symfony\Bundle\FrameworkBundle\Test\WebTestCase::class);
+namespace App\Tests\Feature\Auth;
+
+use App\Factory\UserFactory;
 use App\Fixtures\AppFixtures;
-use App\Fixtures\Factory\UserFactory;
 use Symfony\Bundle\FrameworkBundle\KernelBrowser;
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 use Symfony\Contracts\Translation\TranslatorInterface;
+use Zenstruck\Foundry\Test\Factories;
+use Zenstruck\Foundry\Test\ResetDatabase;
 
-uses(\Zenstruck\Foundry\Test\ResetDatabase::class);
+final class LoginTest extends WebTestCase
+{
+    use Factories;
+    use ResetDatabase;
 
-uses(\Zenstruck\Foundry\Test\Factories::class);
+    private KernelBrowser $client;
+    private string $submitText;
 
-beforeEach(function () {
-    $this->client = static::createClient();
+    protected function setUp(): void
+    {
+        parent::setUp();
+        $this->client = static::createClient();
 
-    $translator = static::getContainer()->get(TranslatorInterface::class);
-    $this->submitText = $translator->trans('login.label.submit');
+        $translator = static::getContainer()->get(TranslatorInterface::class);
+        $this->submitText = $translator->trans('login.label.submit');
 
-    UserFactory::createOne([
-        'email' => AppFixtures::ADMIN_EMAIL,
-        'password' => '1234',
-        'roles' => ['ROLE_ADMIN'],
-    ]);
+        UserFactory::createOne([
+            'email' => AppFixtures::ADMIN_EMAIL,
+            'password' => '1234',
+            'roles' => ['ROLE_ADMIN'],
+        ]);
 
-    $this->client->request('GET', '/login');
-    self::assertResponseIsSuccessful();
-});
+        $this->client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+    }
 
-test('invalid email', function () {
-    $this->client->submitForm($this->submitText, [
-        '_username' => 'doesNotExist@example.com',
-        '_password' => 'password',
-    ]);
+    public function testInvalidEmail(): void
+    {
+        $this->client->submitForm($this->submitText, [
+            '_username' => 'doesNotExist@example.com',
+            '_password' => 'password',
+        ]);
 
-    self::assertResponseRedirects('/login');
-    $this->client->followRedirect();
-    self::assertSelectorExists('.alert-danger');
-});
+        self::assertResponseRedirects('/login');
+        $this->client->followRedirect();
+        self::assertSelectorExists('.alert-danger');
+    }
 
-test('invalid password', function () {
-    $this->client->submitForm($this->submitText, [
-        '_username' => AppFixtures::ADMIN_EMAIL,
-        '_password' => '0000',
-    ]);
+    public function testInvalidPassword(): void
+    {
+        $this->client->submitForm($this->submitText, [
+            '_username' => AppFixtures::ADMIN_EMAIL,
+            '_password' => '0000',
+        ]);
 
-    self::assertResponseRedirects('/login');
-    $this->client->followRedirect();
-    self::assertSelectorExists('.alert-danger');
-});
+        self::assertResponseRedirects('/login');
+        $this->client->followRedirect();
+        self::assertSelectorExists('.alert-danger');
+    }
 
-test('valid credentials', function () {
-    $this->client->submitForm($this->submitText, [
-        '_username' => AppFixtures::ADMIN_EMAIL,
-        '_password' => '1234',
-    ]);
+    public function testValidCredentials(): void
+    {
+        $this->client->submitForm($this->submitText, [
+            '_username' => AppFixtures::ADMIN_EMAIL,
+            '_password' => '1234',
+        ]);
 
-    self::assertResponseRedirects('/');
-    $this->client->followRedirect();
-    self::assertSelectorNotExists('.alert-danger');
-});
+        self::assertResponseRedirects('/');
+        $this->client->followRedirect();
+        self::assertSelectorNotExists('.alert-danger');
+    }
+}

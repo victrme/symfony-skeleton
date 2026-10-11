@@ -2,22 +2,30 @@
 
 declare(strict_types=1);
 
-uses(\Symfony\Bundle\FrameworkBundle\Test\WebTestCase::class);
+namespace App\Tests\Feature;
 
-test('home', function () {
-    $client = self::createClient();
-    $client->request('GET', '/');
-    self::assertResponseIsSuccessful();
-});
+use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
-test('login', function () {
-    $client = self::createClient();
-    $client->request('GET', '/login');
-    self::assertResponseIsSuccessful();
-});
+final class RouteTest extends WebTestCase
+{
+    public function testHome(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', '/');
+        self::assertResponseIsSuccessful();
+    }
 
-test('register', function () {
-    $client = self::createClient();
-    $client->request('GET', '/register');
-    self::assertResponseIsSuccessful();
-});
+    public function testLogin(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', '/login');
+        self::assertResponseIsSuccessful();
+    }
+
+    public function testRegister(): void
+    {
+        $client = self::createClient();
+        $client->request('GET', '/register');
+        self::assertResponseIsSuccessful();
+    }
+}
