@@ -1,11 +1,11 @@
 {
+    "$schema": "https://biomejs.dev/schemas/2.4.15/schema.json",
     "formatter": {
-        "enabled": false
+        "enabled": true,
+        "useEditorconfig": true
     },
     "assist": {
-        "actions": {
-            "recommended": true
-        }
+        "actions": null
     },
     "linter": {
         "enabled": true,
@@ -22,8 +22,14 @@
         }
     },
     "files": {
-        "includes": ["**", "!var", "!vendor", "!public", "!node_modules"],
-        "ignoreUnknown": true
-    },
-    "$schema": "https://biomejs.dev/schemas/2.4.14/schema.json"
+        "ignoreUnknown": true,
+        "includes": [
+            "**",
+            "!var",
+            "!vendor",
+            "!public",
+            "!node_modules",
+            "!assets/libs"
+        ]
+    }
 }
