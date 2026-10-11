@@ -16,6 +16,7 @@ services:
             - "5173:5173"
         volumes:
             - ./:/var/www/html
+            - /var/lib/pnpm/store:/var/lib/pnpm/store
 
     db:
         image: mariadb

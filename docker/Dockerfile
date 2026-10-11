@@ -1,6 +1,5 @@
-
-
-## Base PHP
+# ----------------------------------------------------------------
+# PHP: Base
 
 FROM php:8.5-fpm AS php-base
 
@@ -20,16 +19,8 @@ RUN groupadd -g $uid $user && \
 
 WORKDIR /var/www/html
 
-
-## Base Node
-
-FROM node:26-slim AS node-base
-
-WORKDIR /var/www/html
-
-RUN npm i -g pnpm
-
-## Development PHP
+# ----------------------------------------------------------------
+# PHP: Development
 
 FROM php-base AS php-dev
 
@@ -42,43 +33,8 @@ RUN echo "memory_limit=1G" > /usr/local/etc/php/conf.d/memory-limit.ini
 COPY --chown=$user:$user . .
 USER $user
 
-
-## Development Node
-
-FROM node-base AS node-dev
-
-
-## Build Composer
-
-FROM composer:latest AS composer-build
-
-WORKDIR /app
-
-COPY composer.json composer.lock symfony.lock ./
-RUN composer install \
-    --no-dev \
-    --no-scripts \
-    --no-interaction \
-    --optimize-autoloader \
-    --prefer-dist
-
-COPY . .
-RUN composer dump-autoload --optimize --no-dev --classmap-authoritative
-
-
-## Build Node
-
-FROM node-base AS node-build
-
-COPY package.json pnpm-lock.yaml ./
-RUN pnpm install --frozen-lockfile
-
-COPY assets/ assets/
-COPY tsconfig.json vite.config.ts ./
-RUN pnpm run build
-
-
-## Production PHP
+# ----------------------------------------------------------------
+# PHP: Production
 
 FROM php-base AS php-prod
 
@@ -94,3 +50,49 @@ COPY --from=node-build --chown=$user:$user /var/www/html/public/build/ public/bu
 USER $user
 
 RUN php bin/console cache:warmup
+
+# ----------------------------------------------------------------
+# Node: Base
+
+FROM node:26-slim AS node-base
+
+WORKDIR /var/www/html
+
+RUN npm i -g pnpm
+
+USER node
+
+# ----------------------------------------------------------------
+# Node: Development
+
+FROM node-base AS node-dev
+
+# ----------------------------------------------------------------
+# Node: Build
+
+FROM node-base AS node-build
+
+COPY package.json pnpm-lock.yaml ./
+RUN pnpm install --frozen-lockfile
+
+COPY assets/ assets/
+COPY tsconfig.json vite.config.ts ./
+RUN pnpm run build
+
+# ----------------------------------------------------------------
+# Composer: Build 
+
+FROM composer:latest AS composer-build
+
+WORKDIR /app
+
+COPY composer.json composer.lock symfony.lock ./
+RUN composer install \
+    --no-dev \
+    --no-scripts \
+    --no-interaction \
+    --optimize-autoloader \
+    --prefer-dist
+
+COPY . .
+RUN composer dump-autoload --optimize --no-dev --classmap-authoritative

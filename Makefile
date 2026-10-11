@@ -34,22 +34,6 @@ node:
 	@docker compose exec -it node bash
 
 #
-# Tools
-#
-
-pnpm:
-	@docker compose exec node pnpm $(filter-out $@,$(MAKECMDGOALS))
-
-composer:
-	@docker compose exec php composer $(filter-out $@,$(MAKECMDGOALS))
-
-symfony:
-	@docker compose exec php symfony $(filter-out $@,$(MAKECMDGOALS))
-
-%:
-	@:
-
-#
 # Scripts
 #
 
