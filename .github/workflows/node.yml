@@ -1,13 +1,9 @@
-name: CI
+name: Node
 
 on:
     push:
         branches:
             - main
-        paths:
-            - "docker/**"
-            - "tests/**"
-            - "*.json"
     pull_request:
         branches:
             - main
@@ -21,8 +17,6 @@ jobs:
 
             - name: Setup pnpm
               uses: pnpm/action-setup@v5
-              with:
-                  version: "10.6.5"
 
             - name: Setup Node
               uses: actions/setup-node@v6

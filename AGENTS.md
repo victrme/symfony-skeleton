@@ -37,8 +37,8 @@ pnpm lint / lint:fix / format / format:fix  # Biome
 
 - **GitHub Actions** in `.github/workflows/` — two workflows: `php.yml` and `node.yml`
 - **GitLab CI** in `.gitlab-ci.yml` — mirrors GitHub workflows exactly
-- Both run on push/PR to `main`, filtered by changed paths
-- PHP: `symfony check:requirements` → `composer run lint` → `composer run test` (requires MariaDB)
+- Both run on pushes to `main` and pull/merge requests
+- PHP: `symfony check:requirements` → `composer run lint` → `composer test` (PHPUnit, requires MariaDB)
 - Node: `pnpm run build` → `pnpm run lint` → `pnpm run test`
 
 ## Key conventions

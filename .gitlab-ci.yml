@@ -1,42 +1,12 @@
+workflow:
+    rules:
+        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
+        - if: $CI_COMMIT_BRANCH == "main" && $CI_PIPELINE_SOURCE == "push"
+
 stages:
     - check
 
-.php_rules: &php_rules
-    rules:
-        - if: $CI_COMMIT_BRANCH == "main"
-          changes:
-              - "docker/**/*"
-              - "tests/**/*"
-              - "translations/**/*"
-              - "templates/**/*"
-              - "config/**/*"
-              - "src/**/*"
-              - "*.json"
-        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-          changes:
-              - "docker/**/*"
-              - "tests/**/*"
-              - "translations/**/*"
-              - "templates/**/*"
-              - "config/**/*"
-              - "src/**/*"
-              - "*.json"
-
-.node_rules: &node_rules
-    rules:
-        - if: $CI_COMMIT_BRANCH == "main"
-          changes:
-              - "docker/**/*"
-              - "tests/**/*"
-              - "*.json"
-        - if: $CI_PIPELINE_SOURCE == "merge_request_event"
-          changes:
-              - "docker/**/*"
-              - "tests/**/*"
-              - "*.json"
-
 php:
-    <<: *php_rules
     stage: check
     image: php:8.5-cli
     services:
@@ -47,6 +17,8 @@ php:
         MARIADB_DATABASE: db_symfony_test
         DATABASE_URL: mysql://root:root@mariadb:3306/db_symfony_test?serverVersion=12.3.1-MariaDB&charset=utf8mb4
     before_script:
+        - apt-get update && apt-get install -y --no-install-recommends curl git unzip libicu-dev libonig-dev libzip-dev
+        - docker-php-ext-install intl mbstring pdo_mysql zip
         - curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
         - curl -sS https://get.symfony.com/cli/installer | bash -s -- --install-dir=/usr/local/bin
         - composer install --no-interaction --prefer-dist
@@ -59,10 +31,9 @@ php:
     script:
         - symfony check:requirements
         - composer run lint
-        - composer run test
+        - composer test
 
 node:
-    <<: *node_rules
     stage: check
     image: node:26
     before_script:
